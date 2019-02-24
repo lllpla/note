@@ -28,28 +28,28 @@ Java Web开发人员应该熟悉这些库中的至少一个。如果你想了解
 ## 4.通用库
 Java开发人员可以使用几个很好的通用第三方库，比如Apache Commons和Google Guava。我总是在我的项目中包含这些库，因为它们简化了很多功能。
 正如Joshua Bloch在Effective Java中所说的那样，重复造轮子是没有意义的。我们应该更偏向于使用久经考验的库而不是时不时自己来实现。
-
+![image.png](2)
 对Java开发人员来说，熟悉Google Guava和Apache Commons库是件好事。
 
 ## 5. HTTP库
 我不喜欢JDK的一点是他们对HTTP支持的缺乏。虽然你可以使用java.net包中的类建立HTTP连接 ，但使用开源的第三方库（如Apache HttpClient和HttpCore）并不容易或不能无缝结合。
 虽然JDK 9带来了HTTP 2.0的支持和更好的HTTP支持，但我强烈建议所有Java开发人员熟悉流行的HTTP客户端库，包括HttpClient和HttpCore。
 你还可以查看此文章What's New in Java 9 - Modules and More以了解有关JDK 9对HTTP 2支持的更多信息。
-
+![image.png](3)
 ## 6. XML解析库
 有许多XML解析库，包括Xerces，JAXB，JAXP，Dom4j和Xstream。Xerces2是Apache Xerces下一高性能版本，完全兼容的XML解析器。这个新版本的Xerces引入了Xerces Native Interface（XNI），这是一个完整的框架，用于构建非常模块化且易于编程的解析器组件和配置。
-
+![image.png](4)
 Apache Xerces2解析器是XNI的参考实现，但是其他解析器组件，配置和解析器可以使用Xerces Native Interface编写。Dom4j是另一个适用于Java应用程序的灵活XML框架。如果你想了解有关Java中XML解析的更多信息，建议你查看Udemy 上的 Java Web Services and XML 在线课程。
 
 ## 7. Excel库
 信不信由你 - 所有现实世界的应用程序都必须以某种形式与Microsoft Office进行交互。许多应用程序需要提供在Excel中导出数据的功能，如果必须从Java应用程序执行相同操作，则需要Apache POI API。
-
+![image.png](5)
 这是一个非常丰富的库，允许你 从Java程序读取和写入XLS文件。你可以看到该链接（http://www.java67.com/2014/09/how-to-read-write-xlsx-file-in-java-apache-poi-example.html），以获取在核心Java应用程序中读取Excel文件的工作示例。
 
 ## 8.字节码库
 如果你正在编写生成代码或与字节码交互的框架，那么你需要一个字节码库。
 它们允许你读取和修改应用程序生成的字节码。Java世界中一些流行的字节码库是javassist和Cglib Nodep。
-
+![image.png](6)
 Javassist（Java programming assistant）使Java字节码操作变得非常简单。它是一个用于在Java中编辑字节码的类库。ASM是另一个有用的字节码编辑库。如果你不熟悉字节码，我建议你查看Introduction to Java Programmers以了解有关它的更多信息。
 
 ## 9.数据库连接池库
@@ -62,16 +62,16 @@ Javassist（Java programming assistant）使Java字节码操作变得非常简�
 与日志记录和数据库连接类似，消息传递也是许多现实世界Java应用程序的常见功能。
 Java提供的JMS，Java Messaging Service不属于JDK。对于此组件，你需要包含一个单独的组件 jms.jar。
 同样，如果你正在使用第三方消息传递协议（如Tibco RV），则需要使用第三方JAR tibrv.jar 放在应用程序类路径中。
-
+![image.png](7)
 ## 11. PDF库
 与Microsoft Excel类似，PDF库是另一种普遍存在的格式。如果你需要在应用程序中支持PDF功能，例如 导出数据到PDF文件，则可以使用iText和Apache FOP库。
 两者都提供有用的PDF相关功能，但iText更丰富，更好。请参阅此处以了解有关iText的更多信息。
-
+![image.png](8)
 ## 12.日期和时间库
 在Java 8之前，JDK的数据和时间库有很多缺陷，因为它们不是线程安全的，不可变的，并且容易出错。许多Java开发人员依靠JodaTime来实现他们的日期和时间要求。
 从JDK 8开始，没有理由使用Joda，因为你在JDK 8的新日期和时间API中获得了所有功能，但如果你使用的是较旧的Java版本，那么JodaTime是一个值得学习的库。
 如果你想了解有关新的日期和时间API的更多信息，我建议你查看Udemy上的What's new in Java 8课程。它提供了Java 8所有重要功能的精彩概述，包括日期和时间API。
-
+![image.png](9)
 ## 13.Collection库
 尽管JDK拥有丰富的集合库，但仍有一些第三方库提供了更多选项，例如Apache Commons集合，Goldman Sachs集合，Google集合和Trove。
 Trove库特别有用，因为它为Java提供了高速的常规和原始集合。
