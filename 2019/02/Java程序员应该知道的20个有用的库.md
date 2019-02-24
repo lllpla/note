@@ -1,15 +1,21 @@
 # Java程序员应该知道的20个有用的库
+
 一个优秀且经验丰富的Java开发人员的特点之一是对API的广泛了解，包括JDK和第三方库。我花了很多时间学习API，特别是在阅读Effective Java 3rd Edition之后，Joshua Bloch建议如何使用现有的API进行开发，而不是为常用的东西写新的代码。
+
 在本文中，我将分享一些Java开发人员应该熟悉的最有用和最重要的库和API。但是，我没有包含框架，例如Spring和Hibernate，因为它们非常有名且具有特定功能。
+
 总的来说，我在日常项目包含了有用的库，包括Log4j日志库，Jackson JSON解析库，以及JUnit和Mockito等单元测试API。如果需要在项目中使用，则在项目的classpath包含这些JAR，也可以使用Maven进行依赖管理。
+
 当你使用Maven进行依赖管理时，它会自动下载这些库，包括它们所依赖的库，称为传递依赖。
 例如，如果你下载Spring Framework，它还将下载Spring所依赖的所有其他JAR，例如Log4j。
 你可能没注意到，但有正确版本的JAR是一个令人头疼的问题。如果是错误的JAR版本，那么你将遇到 ClassNotFoundException， NoClassDefFoundError或 UnsupportedClassVersionError。
 
 # Java程序员20个有用的开源库
+
 这是我收集的一些有用的第三方库，Java开发可以使用它们在应用中来完成许多有用的功能。要使用这些库，Java开发人员应该熟悉它，这就是本文的重点。如果你觉得有用，你可以研究该库并使用它。
 
 ## 1.日志库
+
 日志库非常常见，因为在每个项目中都需要它们。它们是服务器端应用最重要的东西，因为日志只放在可以看到应用程序当前运行时情况的地方。尽管JDK附带了自己的日志库，但还有更好的替代方案，例如Log4j，SLF4j和LogBack。
 ![image.png](1)
 Java开发人员应该熟悉日志库的优缺点，并且知道 为什么使用SLF4j比普通Log4j更好。
