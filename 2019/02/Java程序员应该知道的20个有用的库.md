@@ -11,7 +11,7 @@
 
 ## 1.日志库
 日志库非常常见，因为在每个项目中都需要它们。它们是服务器端应用最重要的东西，因为日志只放在可以看到应用程序当前运行时情况的地方。尽管JDK附带了自己的日志库，但还有更好的替代方案，例如Log4j，SLF4j和LogBack。
-![image.png](0)
+![image.png](1)
 Java开发人员应该熟悉日志库的优缺点，并且知道 为什么使用SLF4j比普通Log4j更好。
 
 ## 2. JSON解析库
@@ -21,7 +21,7 @@ Java Web开发人员应该熟悉这些库中的至少一个。如果你想了解
 
 ## 3.单元测试库
 单元测试是将普通开发人员与优秀开发人员区分开来的最重要的事情。程序员经常有理由不写单元测试，但逃避写单元测试的最常见的借口是缺乏常用单元测试库的经验和知识，包括JUnit，Mockito和PowerMock。
-
+![image.png](0)
 我在2018年有一个目标就是提高我对单元测试和集成测试库的了解，比如JUnit 5，Cucumber，Robot框架和一些其他的。
 我还在Udemy注册了 JUnit and Mockito Crash Course 。即使你了解JUnit和单元测试的基础知识，可能也希望更新并进阶自己的知识。
 
@@ -76,7 +76,7 @@ Java提供的JMS，Java Messaging Service不属于JDK。对于此组件，你需
 尽管JDK拥有丰富的集合库，但仍有一些第三方库提供了更多选项，例如Apache Commons集合，Goldman Sachs集合，Google集合和Trove。
 Trove库特别有用，因为它为Java提供了高速的常规和原始集合。
 
-## FastUtil是另一个类似的API。它通过提供特定类型的映射，集合，列表和优先级队列来扩展Java集合框架，较小的内存占用，快速访问和插入; 它还提供大型（64位）数组，集和列表，以及用于二进制和文本文件快速实用的I / O类。
+FastUtil是另一个类似的API。它通过提供特定类型的映射，集合，列表和优先级队列来扩展Java集合框架，较小的内存占用，快速访问和插入; 它还提供大型（64位）数组，集和列表，以及用于二进制和文本文件快速实用的I / O类。
 
 ## 14.Email API
 javax.mail和Apache Commons Email都提供了一个用于从Java发送电子邮件的API 。它建立在JavaMail API的基础之上，旨在简化它。
@@ -91,20 +91,20 @@ javax.mail和Apache Commons Email都提供了一个用于从Java发送电子邮�
 Apache Commons Codec软件包包含各种格式的简单编码器和解码器，如Base64和Hexadecimal。
 除了这些广泛使用的编码器和解码器之外，编解码器包还维护一组语音编码实用程序。
 
-17.Embedded SQL Database库
+## 17.Embedded SQL Database库
 我真的很喜欢像H2这样的内存数据库，你可以将它嵌入你的Java应用程序中。它们非常适合测试SQL脚本和运行需要数据库的单元测试。但是，H2并不是唯一的DB，你也可以选择Apache Derby和HSQL。
 
-18. JDBC问题排查库
+## 18. JDBC问题排查库
 存在一些很好的JDBC扩展库，可以使调试更容易，比如P6spy。
 这是一个库，可以无缝地拦截和记录数据库数据，而无需对应用程序进行代码更改。你可以使用它们来记录SQL查询及其计时。
 例如，如果你在代码中使用PreparedStatment和CallableStatement，则这些库可以记录一次完全调用的参数和执行所花费的时间。
 
 如果你想了解有关JDBC的更多信息，可以查看JDBC for Beginners。
 
-19.序列化库
+## 19.序列化库
 Google Protocol Buffers是一种以高效可扩展的格式编码结构化数据的方法。它是Java序列化的更丰富，更好的替代品。我强烈建议有经验的Java开发人员学习Google Protobuf。你可以查看此文章以了解有关Google协议缓冲区的更多信息 。
 
-20.网络库
+## 20.网络库
 一些有用的网络库是Netty和Apache MINA。如果你正在编写需要执行底层网络任务的应用程序，请考虑使用这些库。如果你想了解有关Java网络编程的更多信息，请查看 Java Network Programming - TCP/IP Socket Programming。
 
 这些就是对于每个Java开发人员都应该使用的一些有用的库。Java的世界是浩瀚无穷的，你会发现数不胜数的库用于做不同的事情。
