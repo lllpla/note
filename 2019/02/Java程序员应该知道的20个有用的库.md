@@ -75,37 +75,37 @@ Java提供的JMS，Java Messaging Service不属于JDK。对于此组件，你需
 ## 13.Collection库
 尽管JDK拥有丰富的集合库，但仍有一些第三方库提供了更多选项，例如Apache Commons集合，Goldman Sachs集合，Google集合和Trove。
 Trove库特别有用，因为它为Java提供了高速的常规和原始集合。
-
+![image.png](10)
 FastUtil是另一个类似的API。它通过提供特定类型的映射，集合，列表和优先级队列来扩展Java集合框架，较小的内存占用，快速访问和插入; 它还提供大型（64位）数组，集和列表，以及用于二进制和文本文件快速实用的I / O类。
 
 ## 14.Email API
 javax.mail和Apache Commons Email都提供了一个用于从Java发送电子邮件的API 。它建立在JavaMail API的基础之上，旨在简化它。
-
+![image.png](11)
 ## 15. HTML解析库
 与JSON和XML类似，HMTL是我们许多人必须处理的另一种常见格式。值得庆幸的是，我们有JSoup，它极大地简化了在Java应用程序中使用HTML的过程。
 你不仅可以使用JSoup解析HTML，还可以创建HTML文档
-
+![image.png](12)
 它提供了一个非常方便的API，用于提取和操作数据，使用DOM，CSS和类似jquery的方法。JSoup实现了WHATWG HTML5规范，并将HTML解析到同一个DOM，就像现代浏览器一样。
 
 ## 16.Cryptographic库
 Apache Commons Codec软件包包含各种格式的简单编码器和解码器，如Base64和Hexadecimal。
 除了这些广泛使用的编码器和解码器之外，编解码器包还维护一组语音编码实用程序。
-
+![image.png](13)
 ## 17.Embedded SQL Database库
 我真的很喜欢像H2这样的内存数据库，你可以将它嵌入你的Java应用程序中。它们非常适合测试SQL脚本和运行需要数据库的单元测试。但是，H2并不是唯一的DB，你也可以选择Apache Derby和HSQL。
-
+![image.png](14)
 ## 18. JDBC问题排查库
 存在一些很好的JDBC扩展库，可以使调试更容易，比如P6spy。
 这是一个库，可以无缝地拦截和记录数据库数据，而无需对应用程序进行代码更改。你可以使用它们来记录SQL查询及其计时。
 例如，如果你在代码中使用PreparedStatment和CallableStatement，则这些库可以记录一次完全调用的参数和执行所花费的时间。
-
+![image.png](15)
 如果你想了解有关JDBC的更多信息，可以查看JDBC for Beginners。
 
 ## 19.序列化库
 Google Protocol Buffers是一种以高效可扩展的格式编码结构化数据的方法。它是Java序列化的更丰富，更好的替代品。我强烈建议有经验的Java开发人员学习Google Protobuf。你可以查看此文章以了解有关Google协议缓冲区的更多信息 。
-
+![image.png](16)
 ## 20.网络库
 一些有用的网络库是Netty和Apache MINA。如果你正在编写需要执行底层网络任务的应用程序，请考虑使用这些库。如果你想了解有关Java网络编程的更多信息，请查看 Java Network Programming - TCP/IP Socket Programming。
-
+![image.png](17)
 这些就是对于每个Java开发人员都应该使用的一些有用的库。Java的世界是浩瀚无穷的，你会发现数不胜数的库用于做不同的事情。
 如果你想用Java做任何事情，很可能你会找到一个如何实现的库。与往常一样，Google是你找到有用的Java库的最好朋友，但你也可以查看Maven中央存储库，找到适合你手头任务的一些有用的库。
