@@ -19,3 +19,30 @@
 
 ## 2.数据库设计
 
+数据库表是由JPA自动生成的，稍后会对实体进行介绍，内容如下： 
+
+```mysql
+CREATE TABLE `lock_info` ( 
+ `id` bigint(20) NOT NULL, 
+ `expiration_time` datetime NOT NULL, 
+ `status` int(11) NOT NULL, 
+ `tag` varchar(255) NOT NULL, 
+ PRIMARY KEY (`id`), 
+ UNIQUE KEY `uk_tag` (`tag`) 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci; 
+```
+
+其中： 
+
+- id：主键 
+- tag：锁的标示，以订单为例，可以锁订单id 
+- expiration_time：过期时间 
+- status：锁状态，0，未锁，1，已经上锁 
+
+## 3.实现
+
+新建项目，在项目中加入jpa和mysql依赖，完整内容如下： 
+
+
+
+ 
