@@ -24,43 +24,41 @@ Java中IO系统可以分为BIO，NIO，AIO三种io模型
 
 **流包括字符流和字节流，流从概念上来说是一个连续的数据流。当程序需要读数据的时候就需要使用输入流读取数据，当需要往外写数据的时候就需要输出流** 
 
-1、阻塞IO模型 
-
-![img](
+### 1、阻塞IO模型 
 
 Linux在中，当应用进程调用**recvfrom**方法调用数据的时候，如果内核没有把数据准备好不会立刻返回，而是会经历等待数据准备就绪，数据从内核复制到用户空间之后再返回，这期间应用进程一直阻塞直到返回，所以被称为阻塞IO模型 
 
-2、流 
+### 2、流 
 
 BIO中操作的流主要有两大类，字节流和字符流，两类根据流的方向都可以分为输入流和输出流 
 
 按照类型和输入输出方向可分为： 
 
-（1）输入字节流：InputStream 
-
-（2）输出字节流：OutputStream 
-
-（3）输入字符流：Reader 
-
-（4）输出字符流：Writer 
+> （1）输入字节流：InputStream 
+>
+> （2）输出字节流：OutputStream 
+>
+> （3）输入字符流：Reader 
+>
+> （4）输出字符流：Writer 
 
 字节流主要用来处理字节或二进制对象，字符流用来处理字符文本或字符串 
 
 使用InputStreamReader可以将输入字节流转化为输入字符流 
 
-Reader reader = new InputStreamReader(inputStream);复制代码 
+```java
+Reader reader = new InputStreamReader(inputStream);
+```
 
 使用OutputStreamWriter可以将输出字节流转化为输出字符流 
 
-Writer writer = new OutputStreamWriter(outputStream)复制代码 
+```java
+Writer writer = new OutputStreamWriter(outputStream);
+```
 
 我们可以在程序中通过InputStream和Reader从数据源中读取数据，然后也可以在程序中将数据通过OutputStream和Writer输出到目标媒介中 
 
-![img]()
-
 在使用字节流的时候，InputStream和OutputStream都是抽象类，我们实例化的都是他们的子类，每一个子类都有自己的作用范围 
-
-![img]()
 
 在使用字符流的时候也是，Reader和Writer都是抽象类，我们实例化的都是他们的子类，每一个子类都有自己的作用范围 
 
