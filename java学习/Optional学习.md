@@ -22,27 +22,46 @@ Optional的目的就在于此：通过类型系统让你的领域模型中隐藏
 
 ## **三、Optional的使用** 
 
-| **方法**  **描述** **empty** 返回一个空的Optional实例 **filter** 如果值存在并且满足提供的过滤条件，则返回包含该值的Optional对象；否则就返回一个空的Optional对象 **map** 如果值存在，就对该值执行提供的mapping函数调用 **flatMap** 如果值存在，就对该值执行提供的mapping函数调用，返回一个Optional类型的值，否则就返回一个空的Optional对象 **ifPresent** 如果值存在，就执行使用该值的方法调用，否则什么也不做 **of** 将指定值用Optional封装之后返回，如果该值为null，则抛出一个NPE **ofNullable** 将指定值用Optional封装之后返回，如果该值为null，则返回一个空的Optional对象 **orElse** 如果有值则返回，否则返回一个默认值 **orElseGet** 如果有值则返回，否则返回一个由指定的Supplier接口生成的值(如果默认值的生成代价比较高的话，则适合使用orElseGet方法) **orElseThrow** 如果有值则返回，否则返回一个由指定的Supplier接口抛出的异常 **get** 如果值存在，则返回该值，否则抛出一个NoSuchElementException异常 **isPresent** 如果值存在则返回true，否则返回false |      |
-| ------------------------------------------------------------ | ---- |
-|                                                              |      |
+| **方法**        | **描述**                                                     |
+| --------------- | ------------------------------------------------------------ |
+| **empty**       | 返回一个空的Optional实例                                     |
+| **filter**      | 如果值存在并且满足提供的过滤条件，则返回包含该值的Optional对象；否则就返回一个空的Optional对象 |
+| **map**         | 如果值存在，就对该值执行提供的mapping函数调用                |
+| **flatMap**     | 如果值存在，就对该值执行提供的mapping函数调用，返回一个Optional类型的值，否则就返回一个空的Optional对象 |
+| **ifPresent**   | 如果值存在，就执行使用该值的方法调用，否则什么也不做         |
+| **of**          | 将指定值用Optional封装之后返回，如果该值为null，则抛出一个NPE |
+| **ofNullable**  | 将指定值用Optional封装之后返回，如果该值为null，则返回一个空的Optional对象 |
+| **orElse**      | 如果有值则返回，否则返回一个默认值                           |
+| **orElseGet**   | 如果有值则返回，否则返回一个由指定的Supplier接口生成的值(如果默认值的生成代价比较高的话，则适合使用orElseGet方法) |
+| **orElseThrow** | 如果有值则返回，否则返回一个由指定的Supplier接口抛出的异常   |
+| **get**         | 如果值存在，则返回该值，否则抛出一个NoSuchElementException异常 |
+| **isPresent**   | 如果值存在则返回true，否则返回false                          |
 
 上面这张表里列举了Optional的基础API，我这里列举了一些使用的tips： 
 
 - 你可以用**ofNullable**将一个可能为null的对象封装为Optional对象，然后获取值的时候使用**orElse**方法提供默认值； 
 
-//ofNullable方法的使用  Optional<Car> optCar = Optional.ofNullable(car); 
+```java
+//ofNullable方法的使用  
+Optional<Car> optCar = Optional.ofNullable(car); 
+```
 
  
 
 - 可以使用**empty**方法创建一个空的Optional对象； 
 
-//empty方法的使用  Optional<Car> optCar = Optional.empty(); 
+```java
+//empty方法的使用  
+Optional<Car> optCar = Optional.empty(); 
+```
 
  
 
 - **of**方法一般不用，不过如果你知道某个值不可能为null，则可以用Optional封装该值，这样它一旦为null就会抛出异常。 
 
-//of方法的使用  Optional<Car> optCar = Optional.of(car); 
+//of方法的使用  
+
+Optional<Car> optCar = Optional.of(car); 
 
  
 
