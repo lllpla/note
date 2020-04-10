@@ -102,7 +102,14 @@ public String getCarInsuranceName(Optional<Person> person) {
 
 - **由于Optional无法序列化，所以在领域模型中，无法将某个字段定义为Optional的**，原因是：Optional的设计初衷仅仅是要支持能返回Optional对象的语法，如果我们希望在域模型中引入Optional，则可以用下面这种替代的方法： 
 
-public class Person {   private Car car;   public Optional<Car> getCarAsOptional() {    return Optional.ofNullable(car);   }  } 
+```java
+public class Person { 
+ private Car car; 
+ public Optional<Car> getCarAsOptional() { 
+  return Optional.ofNullable(car); 
+ } 
+} 
+```
 
  
 
@@ -110,11 +117,11 @@ public class Person {   private Car car;   public Optional<Car> getCarAsOptional
 
  
 
-**四、实战案例** 
+## **四、实战案例** 
 
  
 
-案例1：使用工具类方法改良可能抛出异常的API 
+### 案例1：使用工具类方法改良可能抛出异常的API
 
 Java方法处理异常结果的方式有两种： 
 
@@ -123,7 +130,7 @@ Java方法处理异常结果的方式有两种：
 
 例如：Integer.parseInt(String)这个方法——如果无法解析到对应的整型，该方法就抛出一个NumberFormationException，这种情况下我们一般会使用try/catch语句处理异常情况。 
 
- 
+
 
 一般我们建议将try/catch块单独提取到一个方法中，在这里使用Optional设计这个方法，代码如下。在开发中，可以尝试构建一个OptionalUtility工具类，将这些复杂的try/catch逻辑封装起来。 
 
