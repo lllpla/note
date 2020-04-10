@@ -360,3 +360,14 @@ public class TestController {
 } 
 ```
 
+## 4.测试
+
+项目使用maven打包，分别使用两个端口启动，分别是20000和20001。 
+
+```java
+java -jar springboot2_distributed_lock_mysql-0.0.1-SNAPSHOT.jar --server.port=20001 
+
+java -jar springboot2_distributed_lock_mysql-0.0.1-SNAPSHOT.jar --server.port=20000 
+```
+
+分别访问两个端口的项目，如图所示，只有一个请求可以获取锁。 
