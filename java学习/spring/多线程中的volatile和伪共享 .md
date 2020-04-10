@@ -287,3 +287,4 @@ public static void main(String[] args) {
 ## 三、volatile关键字的使用 
 
 用volatile修饰的变量，线程在每次使用变量的时候，都会读取变量修改后的最新值。但是由于操作不是原子性的，对于volatile修饰的变量，jvm虚拟机只是保证从主内存加载到线程工作内存的值是最新的。 
+![title](https://raw.githubusercontent.com/lllpla/img/master/gitnote/2020/04/10/1586504462158-1586504462164.png?token=ACTJ35TFPPG3Z2Y4R6KIHJS6SARVI)
