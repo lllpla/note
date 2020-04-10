@@ -174,5 +174,113 @@ public volatile long p1, p2, p3, p4, p5, p6, p7;
 
 **在jdk1.8环境下，缓存行填充终于被JAVA原生支持了。JAVA 8中添加了一个@Contended的注解，添加这个的注解，将会在自动进行缓存行填充。**以上的例子可以改为： 
 ```java
+package basic; 
 
+public class TestFlashONJDK8 implements Runnable { 
+
+    public static int             NUM_THREADS = 4; 
+    public final static long      ITERATIONS  = 500L * 1000L * 1000L; 
+    private final int             arrayIndex; 
+    private static VolatileLong[] longs; 
+
+ 
+
+public TestFlashONJDK8(final int arrayIndex){ 
+        this.arrayIndex = arrayIndex; 
+    } 
+
+ 
+
+public static void main(final String[] args) throws Exception { 
+        Thread.sleep(10000); 
+        System.out.println("starting...."); 
+        if (args.length == 1) { 
+            NUM_THREADS = Integer.parseInt(args[0]); 
+        } 
+
+        longs = new VolatileLong[NUM_THREADS]; 
+        for (int i = 0; i < longs.length; i++) { 
+            longs[i] = new VolatileLong(); 
+        } 
+        final long start = System.nanoTime(); 
+        runTest(); 
+        System.out.println("duration = " + (System.nanoTime() - start)); 
+    } 
+
+ 
+
+private static void runTest() throws InterruptedException { 
+        Thread[] threads = new Thread[NUM_THREADS]; 
+        for (int i = 0; i < threads.length; i++) { 
+            threads[i] = new Thread(new TestFlashONJDK8(i)); 
+        } 
+        for (Thread t : threads) { 
+            t.start(); 
+        } 
+        for (Thread t : threads) { 
+            t.join(); 
+        } 
+    } 
+
+ 
+
+    @Override 
+    public void run() { 
+        long i = ITERATIONS + 1; 
+        while (0 != --i) { 
+            longs[arrayIndex].value = i; 
+        } 
+    } 
+} 
+
+ 
+
+@Contended 
+
+class VolatileLong {  
+
+ 
+
+public volatile long value = 0L;  
+
+} 
+```
+**
+执行时，必须加上虚拟机参数-XX:-RestrictContended，@Contended注释才会生效。很多文章把这个漏掉了，那样的话实际上就没有起作用。 **
+
+```java
+package basic; 
+
+public class TestVolatile { 
+
+public static int count = 0; 
+
+     /* 即使使用volatile，依旧没有达到我们期望的效果 */ 
+    // public volatile static int count = 0; 
+
+public static void increase() { 
+        try { 
+            // 延迟10毫秒，使得结果明显 
+            Thread.sleep(10); 
+            count++; 
+        } catch (InterruptedException e) { 
+            e.printStackTrace(); 
+        } 
+    } 
+
+public static void main(String[] args) { 
+        for (int i = 0; i < 10000; i++) { 
+            new Thread(new Runnable() { 
+
+               @Override 
+                public void run() { 
+                    TestVolatile.increase(); 
+                } 
+            }).start(); 
+        } 
+        System.out.println("期望运行结果:10000"); 
+        System.out.println("实际运行结果:" + TestVolatile.count); 
+    } 
+
+} 
 ```
