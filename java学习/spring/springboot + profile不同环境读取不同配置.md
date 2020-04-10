@@ -37,33 +37,23 @@ spring.profiles.active=dev
 
 > **dev_envrimont和mongodb://192.168.22.110:27017/myfirstMongodb**
 
-1. 如果application.properties的配置改为：spring.profiles.active=prod，则结果是：     
+2. 如果application.properties的配置改为：spring.profiles.active=prod，则结果是：     
 
 > **prod_envrimont**
 
-1. 如果application.properties的配置改为：spring.profiles.active=prod，而application.properties中也配置了profile=xxx（不管该配置配置在spring.profiles.active=prod的上方还是下方），这个时候结果是：
+3. 如果application.properties的配置改为：spring.profiles.active=prod，而application.properties中也配置了profile=xxx（不管该配置配置在spring.profiles.active=prod的上方还是下方），这个时候结果是：
 
-**prod_envrimont**
+> **prod_envrimont**
 
- 
+4. 如果application.properties的配置改为：spring.profiles.active=prod，而application.properties中也配置了profile=xxx（不管该配置配置在spring.profiles.active=prod的上方还是下方），但是application-prod.properties删掉了profile     = prod_envrimont，这个时候结果是：
 
-1. 如果application.properties的配置改为：spring.profiles.active=prod，而application.properties中也配置了profile=xxx（不管该配置配置在spring.profiles.active=prod的上方还是下方），但是application-prod.properties删掉了profile     = prod_envrimont，这个时候结果是：
+> **xxx**
 
-**xxx**
+## **三、结论**
 
- 
+各个环境公共的配置写在application.properties中各个模块独有的配置配置在自己的application-{xxx}.properties文件中程序读取的时候优先读取application.properties中选中的profile的配置，若读不到才会application.properties去读
 
-**三、结论**
-
- 
-
-各个环境公共的配置写在application.properties中各个模块独有的配置配置在自己的application-{xxx}.properties文件中程序读取的时候优先读取application.properties中选中的profile的配置，若读不到才会从application.properties去读
-
- 
-
-**四、指定外部的配置文件**
-
- 
+## **四、指定外部的配置文件**
 
 有些系统，关于一些**数据库**或其他第三方账户等信息，由于安全问题，其配置并不会提前配置在项目中暴露给开发人员。 
 
@@ -71,6 +61,8 @@ spring.profiles.active=dev
 
 以 demo.jar 为例，方法如下：
 
+```shell
   java -jar demo.jar --spring.config.location=/opt/config/application.properties  
+```
 
 其中文件名随便定义，无固定要求。
