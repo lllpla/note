@@ -38,19 +38,15 @@ new Thread(
 - 可选类型声明： 不需要声明参数类型，编译器可以统一识别参数值。也就说(s) -> System.out.println(s)和 (String s) -> System.out.println(s)是一样的编译器会进行类型推断所以不需要添加参数类型。 
 - 可选的参数圆括号： 一个参数无需定义圆括号，但多个参数需要定义圆括号。例如： 
 
- 
-
-1. s -> System.out.println(s) 一个参数不需要添加圆括号。 
-2. (x, y) -> Integer.compare(y, x) 两个参数添加了圆括号，否则编译器报错。 
-
- 
+> 1. s -> System.out.println(s) 一个参数不需要添加圆括号。 
+> 2. (x, y) -> Integer.compare(y, x) 两个参数添加了圆括号，否则编译器报错。 
+>
 
 - 可选的大括号： 如果主体包含了一个语句，就不需要使用大括号。 
 
- 
-
-1. s -> System.out.println(s) , 不需要大括号. 
-2. (s) -> { if (s.equals("s")){ System.out.println(s); } }; 需要大括号 
+> 1. s -> System.out.println(s) , 不需要大括号. 
+> 2. (s) -> { if (s.equals("s")){ System.out.println(s); } }; 需要大括号 
+>
 
 - 可选的返回关键字： 如果主体只有一个表达式返回值则编译器会自动返回值，大括号需要指定明表达式返回了一个数值。 
 
