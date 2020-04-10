@@ -141,11 +141,13 @@ BufferedOutputStream可以为输出字节流提供缓冲区，作用与BufferedI
 
 使用方式将输出流包装到BufferedOutputStream中 
 
+```java
 /**  
-\* outputStream 输出流  
-\* 1024 内部缓冲区大小为1024byte  
+* outputStream 输出流  
+* 1024 内部缓冲区大小为1024byte  
 */ 
-BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStream,1024);复制代码 
+BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStream,1024); 
+```
 
 字节流提供了带缓冲区的，那字符流肯定也提供了BufferedReader和BufferedWriter 
 
@@ -153,17 +155,21 @@ BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStrea
 
 为输入字符流提供缓冲区，使用方式如下 
 
+```java
 BufferedReader bufferedReader = new BufferedReader(reader,1024); 
+```
 
 **（6）BufferedWriter** 
 
 为输出字符流提供缓冲区，使用方式如下 
 
-BufferedWriter bufferedWriter = new BufferedWriter(writer,1024);复制代码 
+```java
+BufferedWriter bufferedWriter = new BufferedWriter(writer,1024);
+```
 
-3、BIO模型 网络编程 
+## 3、BIO模型 网络编程
 
-当使用BIO模型进行Socket编程的时候，服务端通常使用while循环中调用accept方法，在没有客户端请求时，accept方法会一直阻塞，直到接收到请求并返回处理的相应，这个过程都是线性的，只有处理完当前的请求之后才会接受处理后面的请求，这样通常会导致通信线程被长时间阻塞 
+​	当使用BIO模型进行Socket编程的时候，服务端通常使用while循环中调用accept方法，在没有客户端请求时，accept方法会一直阻塞，直到接收到请求并返回处理的相应，这个过程都是线性的，只有处理完当前的请求之后才会接受处理后面的请求，这样通常会导致通信线程被长时间阻塞 
 
 BIO模型处理多个连接： 
 
