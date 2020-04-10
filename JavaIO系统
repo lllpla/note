@@ -64,7 +64,7 @@ Writer writer = new OutputStreamWriter(outputStream);
 
 **以读写文件为例** 
 
-**（1）从数据源中读取数据** 
+####  **（1）从数据源中读取数据**
 
 输入字节流：InputStream
 
@@ -93,7 +93,7 @@ public static void main(String[] args) throws Exception{
 }
 ```
 
-**（2）输出到目标媒介** 
+#### **（2）输出到目标媒介** 
 
 输出字节流：OutputStream 
 
@@ -121,7 +121,7 @@ public static void main(String[] args) throws Exception{
 
 
 
-**（3）BufferedInputStream** 
+#### **（3）BufferedInputStream** 
 
 在使用InputStream的时候，都是一个字节一个字节的读或写，而BufferedInputStream为输入字节流提供了缓冲区，读数据的时候会一次读取一块数据放到缓冲区里，当缓冲区里的数据被读完之后，输入流会再次填充数据缓冲区，直到输入流被读完，有了缓冲区就能够提高很多io速度 
 
@@ -135,7 +135,7 @@ public static void main(String[] args) throws Exception{
 BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream,1024);
 ```
 
-**（4）BufferedOutputStream** 
+#### **（4）BufferedOutputStream** 
 
 BufferedOutputStream可以为输出字节流提供缓冲区，作用与BufferedInputStream类似 
 
@@ -151,7 +151,7 @@ BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStrea
 
 字节流提供了带缓冲区的，那字符流肯定也提供了BufferedReader和BufferedWriter 
 
-**（5）BufferedReader** 
+#### **（5）BufferedReader** 
 
 为输入字符流提供缓冲区，使用方式如下 
 
@@ -159,7 +159,7 @@ BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStrea
 BufferedReader bufferedReader = new BufferedReader(reader,1024); 
 ```
 
-**（6）BufferedWriter** 
+#### **（6）BufferedWriter** 
 
 为输出字符流提供缓冲区，使用方式如下 
 
@@ -167,7 +167,7 @@ BufferedReader bufferedReader = new BufferedReader(reader,1024);
 BufferedWriter bufferedWriter = new BufferedWriter(writer,1024);
 ```
 
-## 3、BIO模型 网络编程
+### 3、BIO模型 网络编程
 
 ​	当使用BIO模型进行Socket编程的时候，服务端通常使用while循环中调用accept方法，在没有客户端请求时，accept方法会一直阻塞，直到接收到请求并返回处理的相应，这个过程都是线性的，只有处理完当前的请求之后才会接受处理后面的请求，这样通常会导致通信线程被长时间阻塞 
 
