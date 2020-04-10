@@ -1,7 +1,7 @@
 # Spring的事务传播机制
 
 
-![](https://cdn.nlark.com/yuque/0/2020/svg/931592/1581757864041-bda74293-bd26-4770-b3a5-0543f0264792.svg)
+
 ---
 
 <a name="anyFc"></a>
