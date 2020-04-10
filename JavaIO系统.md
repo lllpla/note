@@ -441,7 +441,7 @@ while (true){
 JDK1.7升级了Nio类库，成为Nio2.0，最主要的是提供了异步文件的IO操作，以及事件驱动IO，AIO的异步套接字通道是真正的异步非阻塞IO 
 
 ### 1、异步IO模型 
-
+![title](https://raw.githubusercontent.com/lllpla/img/master/gitnote/2020/04/10/1586514701626-1586514701630.png)
 在Linux系统中，应用进程发起read操作，立刻可以去做其他的事，内核会将数据准备好并且复制到用空间后告诉应用进程，数据已经复制完成read操作 
 
 ### 2、aio模型 网络编程 
@@ -549,5 +549,5 @@ TimeUnit.SECONDS.sleep(1000L);
 四、总结 
 
 各IO模型对比： 
-
+![title](https://raw.githubusercontent.com/lllpla/img/master/gitnote/2020/04/10/1586514734984-1586514734989.png)
 **伪异步IO是指使用线程池处理请求的Bio模型** 
