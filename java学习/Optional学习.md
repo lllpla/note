@@ -1,12 +1,12 @@
-已剪辑自: https://juejin.im/post/5d33bdeb51882557d67fe513 
 
- 
+
+# 使用Optional摆脱NullPointerException的折磨  
 
 在目前的工作中，我对Java中的Stream和Lambda表达式都使用得很多，之前也写了两篇文章来总结对应的知识。 
 
 不过对于Optional这个特性，一直没有很好地使用起来，所以最近又开始阅读《Java 8实战》这本书，本文是针对其中第10章的一个学习总结。 
 
-**一、背景** 
+## **一、背景** 
 
 在Java中，如果你尝试对null做函数调用，就会引发NullPointerException（NPE），NPE是Java程序开发中的最典型的异常，对于Java开发者来说，无论你是初出茅庐的新人和还工作多年的老司机，NPE经常让他们翻车。为了避免NPE，他们会加很多if判断语句，使得代码的可读性变得很差。 
 
@@ -14,13 +14,13 @@
 
 从Java类型系统的角度看，null可以被赋值给任何类型的变量，并且不断被传递，知道最后谁也不知道它是从哪里引入的。 
 
-**二、Optional的引入** 
+## **二、Optional的引入** 
 
 Java设计者从Haskell和Scala中获取灵感，在Java 8中引入了一个新的类java.util.Optional<T>。如果一个接口返回Optional，可以表示一个人可能有车也可能没有车，这个比简单的返回Car要更明确，阅读代码的人不需要提前准备业务知识。 
 
 Optional的目的就在于此：通过类型系统让你的领域模型中隐藏的知识显式地体现在你的代码中。 
 
-**三、Optional的使用** 
+## **三、Optional的使用** 
 
 | **方法**  **描述** **empty** 返回一个空的Optional实例 **filter** 如果值存在并且满足提供的过滤条件，则返回包含该值的Optional对象；否则就返回一个空的Optional对象 **map** 如果值存在，就对该值执行提供的mapping函数调用 **flatMap** 如果值存在，就对该值执行提供的mapping函数调用，返回一个Optional类型的值，否则就返回一个空的Optional对象 **ifPresent** 如果值存在，就执行使用该值的方法调用，否则什么也不做 **of** 将指定值用Optional封装之后返回，如果该值为null，则抛出一个NPE **ofNullable** 将指定值用Optional封装之后返回，如果该值为null，则返回一个空的Optional对象 **orElse** 如果有值则返回，否则返回一个默认值 **orElseGet** 如果有值则返回，否则返回一个由指定的Supplier接口生成的值(如果默认值的生成代价比较高的话，则适合使用orElseGet方法) **orElseThrow** 如果有值则返回，否则返回一个由指定的Supplier接口抛出的异常 **get** 如果值存在，则返回该值，否则抛出一个NoSuchElementException异常 **isPresent** 如果值存在则返回true，否则返回false |      |
 | ------------------------------------------------------------ | ---- |
