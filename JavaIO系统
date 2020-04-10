@@ -96,6 +96,8 @@ public static void main(String[] args) throws Exception{
 **（2）输出到目标媒介** 
 
 输出字节流：OutputStream 
+
+```java
 public static void main(String[] args) throws Exception{ 
     String var = "hai this is a test"; 
     File file = new File("D:/b.txt"); 
@@ -103,14 +105,21 @@ public static void main(String[] args) throws Exception{
     outputStream.write(var.getBytes()); 
     outputStream.close(); 
 } 
+```
+
 输出字符流：Writer 
+
+```java
 public static void main(String[] args) throws Exception{ 
     String var = "hai this is a test"; 
     File file = new File("D:/b.txt"); 
     Writer writer = new FileWriter(file); 
     writer.write(var); 
     writer.close(); 
-}复制代码 
+}
+```
+
+
 
 **（3）BufferedInputStream** 
 
@@ -118,11 +127,13 @@ public static void main(String[] args) throws Exception{
 
 使用方式将输入流包装到BufferedInputStream中 
 
+```java
 /**  
-\* inputStream 输入流  
-\* 1024 内部缓冲区大小为1024byte  
+* inputStream 输入流  
+* 1024 内部缓冲区大小为1024byte  
 */ 
-BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream,1024);复制代码 
+BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream,1024);
+```
 
 **（4）BufferedOutputStream** 
 
