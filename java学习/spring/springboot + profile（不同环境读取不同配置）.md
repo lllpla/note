@@ -8,25 +8,32 @@
 
 不同环境的配置设置一个配置文件，例如：dev环境下的配置配置在application-dev.properties中；prod环境下的配置配置在application-prod.properties中。在application.properties中指定使用哪一个文件：
 
-```
+```properties
 1. application-dev.properties（dev环境下的配置）profile = dev_envrimont 
 2. application-prod.properties（prod环境下的配置）profile = prod_envrimont
 3. application.properties
 ```
 
+```properties
+spring.data.mongodb.uri=mongodb://192.168.22.110:27017/myfirstMongodb      #spring.profiles.active      
+spring.profiles.active=dev  
 ```
- 
-```
-
-   spring.data.mongodb.uri=mongodb://192.168.22.110:27017/myfirstMongodb      #spring.profiles.active      spring.profiles.active=dev  
 
  
 
 其中：Controller代码为
 
-​    @Autowired      **private** Environment env;              @RequestMapping("/testProfile")      **public** String testProfile(){        **return** env.getProperty("profile");      }   
+```
+  @Autowired 
 
- 
+   **private** Environment env; 
+
+   @RequestMapping("/testProfile") 
+
+   **public** String testProfile(){ 
+​     **return** env.getProperty("profile"); 
+   } 
+```
 
 **二、测试**
 
