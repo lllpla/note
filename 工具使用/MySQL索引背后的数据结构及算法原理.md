@@ -544,20 +544,32 @@ SELECT count(DISTINCT(concat(first_name, left(last_name, 3))))/count(*) AS Selec
 
 选择性还不错，但离0.9313还是有点距离，那么把last_name前缀加到4：
 
-```
-SELECT count(DISTINCT(concat(first_name, left(last_name, 4))))/count(*) AS Selectivity FROM employees.employees;+-------------+| Selectivity |+-------------+|      0.9007 |+-------------+
+```mysql
+SELECT count(DISTINCT(concat(first_name, left(last_name, 4))))/count(*) AS Selectivity FROM employees.employees;
++-------------+
+| Selectivity |
++-------------+
+|      0.9007 |
++-------------+
 ```
 
 这时选择性已经很理想了，而这个索引的长度只有18，比<first_name, last_name>短了接近一半，我们把这个前缀索引 建上：
 
-```
-ALTER TABLE employees.employeesADD INDEX `first_name_last_name4` (first_name, last_name(4));
+```mysql
+ALTER TABLE employees.employees
+ADD INDEX `first_name_last_name4` (first_name, last_name(4));
 ```
 
 此时再执行一遍按名字查询，比较分析一下与建索引前的结果：
 
-```
-SHOW PROFILES;+----------+------------+---------------------------------------------------------------------------------+| Query_ID | Duration   | Query                                                                           |+----------+------------+---------------------------------------------------------------------------------+|       87 | 0.11941700 | SELECT * FROM employees.employees WHERE first_name='Eric' AND last_name='Anido' ||       90 | 0.00092400 | SELECT * FROM employees.employees WHERE first_name='Eric' AND last_name='Anido' |+----------+------------+---------------------------------------------------------------------------------+
+```mysql
+SHOW PROFILES;
++----------+------------+---------------------------------------------------------------------------------+
+| Query_ID | Duration   | Query                                                                           |
++----------+------------+---------------------------------------------------------------------------------+
+|       87 | 0.11941700 | SELECT * FROM employees.employees WHERE first_name='Eric' AND last_name='Anido' |
+|       90 | 0.00092400 | SELECT * FROM employees.employees WHERE first_name='Eric' AND last_name='Anido' |
++----------+------------+---------------------------------------------------------------------------------+
 ```
 
 性能的提升是显著的，查询速度提高了120多倍。
