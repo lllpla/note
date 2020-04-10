@@ -24,7 +24,9 @@ Java中IO系统可以分为BIO，NIO，AIO三种io模型
 
 **流包括字符流和字节流，流从概念上来说是一个连续的数据流。当程序需要读数据的时候就需要使用输入流读取数据，当需要往外写数据的时候就需要输出流** 
 
-### 1、阻塞IO模型 
+### 1、阻塞IO模型
+
+![title](https://raw.githubusercontent.com/lllpla/img/master/gitnote/2020/04/10/1586514461431-1586514461468.png)
 
 Linux在中，当应用进程调用**recvfrom**方法调用数据的时候，如果内核没有把数据准备好不会立刻返回，而是会经历等待数据准备就绪，数据从内核复制到用户空间之后再返回，这期间应用进程一直阻塞直到返回，所以被称为阻塞IO模型 
 
@@ -57,7 +59,7 @@ Writer writer = new OutputStreamWriter(outputStream);
 ```
 
 我们可以在程序中通过InputStream和Reader从数据源中读取数据，然后也可以在程序中将数据通过OutputStream和Writer输出到目标媒介中 。
-
+![title](https://raw.githubusercontent.com/lllpla/img/master/gitnote/2020/04/10/1586514489825-1586514489829.png)
 > 在使用字节流的时候，InputStream和OutputStream都是抽象类，我们实例化的都是他们的子类，每一个子类都有自己的作用范围 
 >
 > 在使用字符流的时候也是，Reader和Writer都是抽象类，我们实例化的都是他们的子类，每一个子类都有自己的作用范围 
