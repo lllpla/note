@@ -1,12 +1,12 @@
-**运行用户** 
+## **运行用户** 
 
 user nobody; 
 
-**启动进程,通常设置成和cpu的数量相等** 
+## **启动进程,通常设置成和cpu的数量相等** 
 
 worker_processes 1; 
 
-**全局错误日志及PID文件** 
+## **全局错误日志及PID文件** 
 
 **error_log logs/error.log;** 
 
@@ -16,39 +16,39 @@ worker_processes 1;
 
 **pid logs/nginx.pid;** 
 
-**工作模式及连接数上限** 
+## **工作模式及连接数上限** 
 
+```
 events {  
 
-\#epoll是多路复用IO(I/O Multiplexing)中的一种方式,  
+#epoll是多路复用IO(I/O Multiplexing)中的一种方式,  
 
-\#仅用于linux2.6以上内核,可以大大提高nginx的性能  
+#仅用于linux2.6以上内核,可以大大提高nginx的性能  
 
 use epoll; 
 
-\#单个后台worker process进程的最大并发链接数   
+#单个后台worker process进程的最大并发链接数   
 worker_connections 1024; 
  
 
-\# 并发总数是 worker_processes 和 worker_connections 的乘积 
-\# 即 max_clients = worker_processes * worker_connections 
-\# 在设置了反向代理的情况下，max_clients = worker_processes * worker_connections / 4 为什么 
-\# 为什么上面反向代理要除以4，应该说是一个经验值 
-\# 根据以上条件，正常情况下的Nginx Server可以应付的最大连接数为：4 * 8000 = 32000 
-\# worker_connections 值的设置跟物理内存大小有关 
-\# 因为并发受IO约束，max_clients的值须小于系统可以打开的最大文件数 
-\# 而系统可以打开的最大文件数和内存大小成正比，一般1GB内存的机器上可以打开的文件数大约是10万左右 
-\# 我们来看看360M内存的VPS可以打开的文件句柄数是多少： 
-\# $ cat /proc/sys/fs/file-max 
-\# 输出 34336 
-\# 32000 < 34336，即并发连接总数小于系统可以打开的文件句柄总数，这样就在操作系统可以承受的范围之内 
-\# 所以，worker_connections 的值需根据 worker_processes 进程数目和系统可以打开的最大文件总数进行适当地进行设置 
-\# 使得并发总数小于操作系统可以打开的最大文件数目 
-\# 其实质也就是根据主机的物理CPU和内存进行配置 
-\# 当然，理论上的并发总数可能会和实际有所偏差，因为主机还有其他的工作进程需要消耗系统资源。 
-\# ulimit -SHn 65535 
+# 并发总数是 worker_processes 和 worker_connections 的乘积 
+# 即 max_clients = worker_processes * worker_connections 
+# 在设置了反向代理的情况下，max_clients = worker_processes * worker_connections / 4 为什么 
+# 为什么上面反向代理要除以4，应该说是一个经验值 
+# 根据以上条件，正常情况下的Nginx Server可以应付的最大连接数为：4 * 8000 = 32000 
+# worker_connections 值的设置跟物理内存大小有关 
+# 因为并发受IO约束，max_clients的值须小于系统可以打开的最大文件数 
+# 而系统可以打开的最大文件数和内存大小成正比，一般1GB内存的机器上可以打开的文件数大约是10万左右 
+# 我们来看看360M内存的VPS可以打开的文件句柄数是多少： 
+# $ cat /proc/sys/fs/file-max 
+# 输出 34336 
+# 32000 < 34336，即并发连接总数小于系统可以打开的文件句柄总数，这样就在操作系统可以承受的范围之内 
+# 所以，worker_connections 的值需根据 worker_processes 进程数目和系统可以打开的最大文件总数进行适当地进行设置 
+# 使得并发总数小于操作系统可以打开的最大文件数目 
+# 其实质也就是根据主机的物理CPU和内存进行配置 
+# 当然，理论上的并发总数可能会和实际有所偏差，因为主机还有其他的工作进程需要消耗系统资源。 
+# ulimit -SHn 65535 
  
-
 } 
 
 http {  
@@ -97,6 +97,7 @@ server {
   \#侦听80端口 
   listen  80; 
   \#定义使用 [www.nginx.cn访问 
+
 ](http://www.nginx.xn--cn-sk1gs16a/)  server_name [www.nginx.cn](http://www.nginx.cn/); 
  
 
@@ -154,3 +155,5 @@ server {
  
 
 } 
+```
+
