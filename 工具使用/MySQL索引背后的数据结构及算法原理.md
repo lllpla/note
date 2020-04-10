@@ -490,8 +490,13 @@ Index Selectivity = Cardinality / #T
 
 显然选择性的取值范围为(0, 1]，选择性越高的索引价值越大，这是由B+Tree的性质决定的。例如，上文用到的employees.titles表，如果title字段经常被单独查询，是否需要建索引，我们看一下它的选择性：
 
-```
-SELECT count(DISTINCT(title))/count(*) AS Selectivity FROM employees.titles;+-------------+| Selectivity |+-------------+|      0.0000 |+-------------+
+```mysql
+SELECT count(DISTINCT(title))/count(*) AS Selectivity FROM employees.titles;
++-------------+
+| Selectivity |
++-------------+
+|      0.0000 |
++-------------+
 ```
 
 title的选择性不足0.0001（精确值为0.00001579），所以实在没有什么必要为其单独建索引。
@@ -500,20 +505,41 @@ title的选择性不足0.0001（精确值为0.00001579），所以实在没有�
 
 从图12可以看到employees表只有一个索引<emp_no>，那么如果我们想按名字搜索一个人，就只能全表扫描了：
 
-```
-EXPLAIN SELECT * FROM employees.employees WHERE first_name='Eric' AND last_name='Anido';+----+-------------+-----------+------+---------------+------+---------+------+--------+-------------+| id | select_type | table     | type | possible_keys | key  | key_len | ref  | rows   | Extra       |+----+-------------+-----------+------+---------------+------+---------+------+--------+-------------+|  1 | SIMPLE      | employees | ALL  | NULL          | NULL | NULL    | NULL | 300024 | Using where |+----+-------------+-----------+------+---------------+------+---------+------+--------+-------------+
+```mysql
+EXPLAIN SELECT * FROM employees.employees WHERE first_name='Eric' AND last_name='Anido';
++----+-------------+-----------+------+---------------+------+---------+------+--------+-------------+
+| id | select_type | table     | type | possible_keys | key  | key_len | ref  | rows   | Extra       |
++----+-------------+-----------+------+---------------+------+---------+------+--------+-------------+
+|  1 | SIMPLE      | employees | ALL  | NULL          | NULL | NULL    | NULL | 300024 | Using where |
++----+-------------+-----------+------+---------------+------+---------+------+--------+-------------+
 ```
 
 如果频繁按名字搜索员工，这样显然效率很低，因此我们可以考虑建索引。有两种选择，建<first_name>或<first_name, last_name>，看下两个索引的选择性：
 
-```
-SELECT count(DISTINCT(first_name))/count(*) AS Selectivity FROM employees.employees;+-------------+| Selectivity |+-------------+|      0.0042 |+-------------+SELECT count(DISTINCT(concat(first_name, last_name)))/count(*) AS Selectivity FROM employees.employees;+-------------+| Selectivity |+-------------+|      0.9313 |+-------------+
+```mysql
+SELECT count(DISTINCT(first_name))/count(*) AS Selectivity FROM employees.employees;
++-------------+
+| Selectivity |
++-------------+
+|      0.0042 |
++-------------+
+SELECT count(DISTINCT(concat(first_name, last_name)))/count(*) AS Selectivity FROM employees.employees;
++-------------+
+| Selectivity |
++-------------+
+|      0.9313 |
++-------------+
 ```
 
 <first_name>显然选择性太低，<first_name, last_name>选择性很好，但是first_name和last_name加起来长度为30，有没有兼顾长度和选择性的办法？可以考虑用first_name和last_name的前几个字符建立索引，例如<first_name, left(last_name, 3)>，看看其选择性：
 
-```
-SELECT count(DISTINCT(concat(first_name, left(last_name, 3))))/count(*) AS Selectivity FROM employees.employees;+-------------+| Selectivity |+-------------+|      0.7879 |+-------------+
+```mysql
+SELECT count(DISTINCT(concat(first_name, left(last_name, 3))))/count(*) AS Selectivity FROM employees.employees;
++-------------+
+| Selectivity |
++-------------+
+|      0.7879 |
++-------------+
 ```
 
 选择性还不错，但离0.9313还是有点距离，那么把last_name前缀加到4：
