@@ -35,15 +35,11 @@ spring.profiles.active=dev
 
 1. 上述代码执行后的结果是：
 
-**dev_envrimont和mongodb://192.168.22.110:27017/myfirstMongodb**
-
- 
+> **dev_envrimont和mongodb://192.168.22.110:27017/myfirstMongodb**
 
 1. 如果application.properties的配置改为：spring.profiles.active=prod，则结果是：     
 
-**prod_envrimont**
-
- 
+> **prod_envrimont**
 
 1. 如果application.properties的配置改为：spring.profiles.active=prod，而application.properties中也配置了profile=xxx（不管该配置配置在spring.profiles.active=prod的上方还是下方），这个时候结果是：
 
