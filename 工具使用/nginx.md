@@ -18,7 +18,7 @@ worker_processes 1;
 
 ## **工作模式及连接数上限** 
 
-```
+```properties
 events {  
 
 #epoll是多路复用IO(I/O Multiplexing)中的一种方式,  
@@ -30,7 +30,6 @@ use epoll;
 #单个后台worker process进程的最大并发链接数   
 worker_connections 1024; 
  
-
 # 并发总数是 worker_processes 和 worker_connections 的乘积 
 # 即 max_clients = worker_processes * worker_connections 
 # 在设置了反向代理的情况下，max_clients = worker_processes * worker_connections / 4 为什么 
@@ -48,112 +47,91 @@ worker_connections 1024;
 # 其实质也就是根据主机的物理CPU和内存进行配置 
 # 当然，理论上的并发总数可能会和实际有所偏差，因为主机还有其他的工作进程需要消耗系统资源。 
 # ulimit -SHn 65535 
- 
 } 
 
 http {  
 
-\#设定mime类型,类型由mime.type文件定义  
-
+#设定mime类型,类型由mime.type文件定义  
 include mime.types;  
 
 default_type application/octet-stream;  
 
-\#设定日志格式  
-
+#设定日志格式  
 log_format main ‘*remote**a**ddr*−remote_user [*time**l**ocal*]“request” ’  
-
 ‘*status*body_bytes_sent “*http**r**eferer*”′‘”http_user_agent” “$http_x_forwarded_for”’; 
-
 access_log logs/access.log main; 
- 
 
-\#sendfile 指令指定 nginx 是否调用 sendfile 函数（zero copy 方式）来输出文件， 
-\#对于普通应用，必须设为 on, 
-\#如果用来进行下载等应用磁盘IO重负载应用，可设置为 off， 
-\#以平衡磁盘与网络I/O处理速度，降低系统的uptime. 
+#sendfile 指令指定 nginx 是否调用 sendfile 函数（zero copy 方式）来输出文件， 
+#对于普通应用，必须设为 on, 
+#如果用来进行下载等应用磁盘IO重负载应用，可设置为 off， 
+#以平衡磁盘与网络I/O处理速度，降低系统的uptime. 
 sendfile   on; 
-\#tcp_nopush   on; 
- 
+#tcp_nopush   on; 
 
-\#连接超时时间 
-\#keepalive_timeout 0; 
+#连接超时时间 
+#keepalive_timeout 0; 
 keepalive_timeout 65; 
 tcp_nodelay   on; 
- 
 
-\#开启gzip压缩 
+#开启gzip压缩 
 gzip on; 
 gzip_disable "MSIE [1-6]."; 
  
-
-\#设定请求缓冲 
+#设定请求缓冲 
 client_header_buffer_size  128k; 
 large_client_header_buffers 4 128k; 
  
-
-\#设定虚拟主机配置 
+#设定虚拟主机配置 
 server { 
-  \#侦听80端口 
+  #侦听80端口 
   listen  80; 
-  \#定义使用 [www.nginx.cn访问 
+  #定义使用 [www.nginx.cn访问 
 
 ](http://www.nginx.xn--cn-sk1gs16a/)  server_name [www.nginx.cn](http://www.nginx.cn/); 
  
-
-\#定义服务器的默认网站根目录位置 
+#定义服务器的默认网站根目录位置 
   root html; 
  
-
-\#设定本虚拟主机的访问日志 
+#设定本虚拟主机的访问日志 
   access_log logs/nginx.access.log main; 
  
-
-\#默认请求 
+#默认请求 
   location / { 
  
-
-\#定义首页索引文件的名称 
+#定义首页索引文件的名称 
     index index.php index.html index.htm;  
- 
-
 } 
  
 
-\# 定义错误提示页面 
+# 定义错误提示页面 
   error_page  500 502 503 504 /50x.html; 
   location = /50x.html { 
   } 
  
 
-\#静态文件，nginx自己处理 
+#静态文件，nginx自己处理 
   location ~ ^/(images|javascript|js|css|flash|media|static)/ { 
  
 
-\#过期30天，静态文件不怎么更新，过期可以设大一点， 
+#过期30天，静态文件不怎么更新，过期可以设大一点， 
     \#如果频繁更新，则可以设置得小一点。 
     expires 30d; 
   } 
  
 
-\#PHP 脚本请求全部转发到 FastCGI处理. 使用FastCGI默认配置. 
+#PHP 脚本请求全部转发到 FastCGI处理. 使用FastCGI默认配置. 
   location ~ .php$ { 
     fastcgi_pass 127.0.0.1:9000; 
     fastcgi_index index.php; 
     fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; 
     include fastcgi_params; 
-  } 
- 
+  }  
 
-\#禁止访问 .htxxx 文件 
+#禁止访问 .htxxx 文件 
     location ~ /.ht { 
     deny all; 
   } 
- 
-
 } 
- 
-
 } 
 ```
 
