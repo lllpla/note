@@ -1,8 +1,6 @@
 # springboot + profile不同环境读取不同配置
 
- 
-
-**一、具体做法**
+## **一、具体做法**
 
  
 
@@ -19,25 +17,21 @@ spring.data.mongodb.uri=mongodb://192.168.22.110:27017/myfirstMongodb      #spri
 spring.profiles.active=dev  
 ```
 
- 
+
 
 其中：Controller代码为
 
-```
-  @Autowired 
-
-   **private** Environment env; 
-
-   @RequestMapping("/testProfile") 
-
-   **public** String testProfile(){ 
-​     **return** env.getProperty("profile"); 
-   } 
+```java
+   @Autowired  
+   private Environment env;  
+           
+   @RequestMapping("/testProfile")  
+   public String testProfile(){  
+         return env.getProperty("profile");  
+   }  
 ```
 
-**二、测试**
-
- 
+## **二、测试**
 
 1. 上述代码执行后的结果是：
 
