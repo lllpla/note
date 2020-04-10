@@ -1,4 +1,4 @@
-# Java程序员应该知道的20个有用的库
+# Java 20个有用的库
 
 一个优秀且经验丰富的Java开发人员的特点之一是对API的广泛了解，包括JDK和第三方库。我花了很多时间学习API，特别是在阅读Effective Java 3rd Edition之后，Joshua Bloch建议如何使用现有的API进行开发，而不是为常用的东西写新的代码。
 
