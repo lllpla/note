@@ -64,6 +64,8 @@ Writer writer = new OutputStreamWriter(outputStream);
 >
 > 在使用字符流的时候也是，Reader和Writer都是抽象类，我们实例化的都是他们的子类，每一个子类都有自己的作用范围 
 
+![title](https://raw.githubusercontent.com/lllpla/img/master/gitnote/2020/04/10/1586514524107-1586514524113.png)
+
 **以读写文件为例** 
 
 ####  **（1）从数据源中读取数据**
@@ -174,7 +176,7 @@ BufferedWriter bufferedWriter = new BufferedWriter(writer,1024);
 ​	当使用BIO模型进行Socket编程的时候，服务端通常使用while循环中调用accept方法，在没有客户端请求时，accept方法会一直阻塞，直到接收到请求并返回处理的相应，这个过程都是线性的，只有处理完当前的请求之后才会接受处理后面的请求，这样通常会导致通信线程被长时间阻塞 
 
 BIO模型处理多个连接： 
-
+![title](https://raw.githubusercontent.com/lllpla/img/master/gitnote/2020/04/10/1586514551748-1586514551755.png)
 在这种模式中我们通常用一个线程去接受请求，然后用一个线程池去处理请求，用这种方式并发管理多个Socket客户端连接，像这样： 
 
 使用BIO模型进行网络编程的问题在于缺乏弹性伸缩能力，客户端并发访问数量和服务器线程数量是1:1的关系，而且平时由于阻塞会有大量的线程处于等待状态，等待输入或者输出数据就绪，造成资源浪费，在面对大量并发的情况下，如果不使用线程池直接new线程的话，就会大致线程膨胀，系统性能下降，有可能导致堆栈的内存溢出，而且频繁的创建销毁线程，更浪费资源 
