@@ -269,9 +269,18 @@ MySQL官方文档中关于此数据库的页面为http://dev.mysql.com/doc/emplo
 
 以employees.titles表为例，下面先查看其上都有哪些索引：
 
+```sql
+SHOW INDEX FROM employees.titles;
 ```
-SHOW INDEX FROM employees.titles;+--------+------------+----------+--------------+-------------+-----------+-------------+------+------------+| Table  | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Null | Index_type |+--------+------------+----------+--------------+-------------+-----------+-------------+------+------------+| titles |          0 | PRIMARY  |            1 | emp_no      | A         |        NULL |      | BTREE      || titles |          0 | PRIMARY  |            2 | title       | A         |        NULL |      | BTREE      || titles |          0 | PRIMARY  |            3 | from_date   | A         |      443308 |      | BTREE      || titles |          1 | emp_no   |            1 | emp_no      | A         |      443308 |      | BTREE      |+--------+------------+----------+--------------+-------------+-----------+-------------+------+------------+
-```
+
++--------+------------+----------+--------------+-------------+-----------+-------------+------+------------+
+| Table  | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Null | Index_type |
++--------+------------+----------+--------------+-------------+-----------+-------------+------+------------+
+| titles |          0 | PRIMARY  |            1 | emp_no      | A         |        NULL |      | BTREE      |
+| titles |          0 | PRIMARY  |            2 | title       | A         |        NULL |      | BTREE      |
+| titles |          0 | PRIMARY  |            3 | from_date   | A         |      443308 |      | BTREE      |
+| titles |          1 | emp_no   |            1 | emp_no      | A         |      443308 |      | BTREE      |
++--------+------------+----------+--------------+-------------+-----------+-------------+------+------------+
 
 从结果中可以到titles表的主索引为<emp_no, title, from_date>，还有一个辅助索引<emp_no>。为了避免多个索引使事情变复杂（MySQL的SQL优化器在多索引时行为比较复杂），这里我们将辅助索引drop掉：
 
