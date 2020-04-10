@@ -138,3 +138,77 @@ spring.jpa.database-platform=org.hibernate.dialect.MySQL5InnoDBDialect
 
 
 ### 3.3 实体
+
+实体类如下，这里给tag字段设置了唯一索引，防止重复插入相同的数据： 
+
+```java
+package com.dalaoyang.entity; 
+ 
+import lombok.Data; 
+import javax.persistence.*; 
+import java.util.Date; 
+ 
+@Data 
+@Entity 
+@Table(name = "LockInfo", 
+    uniqueConstraints={@UniqueConstraint(columnNames={"tag"},name = "uk_tag")}) 
+public class Lock { 
+ 
+  public final static Integer LOCKED_STATUS = 1; 
+  public final static Integer UNLOCKED_STATUS = 0; 
+ 
+  /** 
+   * 主键id 
+   */ 
+  @Id 
+  @GeneratedValue(strategy = GenerationType.AUTO) 
+  private Long id; 
+ 
+  /** 
+   * 锁的标示，以订单为例，可以锁订单id 
+   */ 
+  @Column(nullable = false) 
+  private String tag; 
+ 
+  /** 
+   * 过期时间 
+   */ 
+  @Column(nullable = false) 
+  private Date expirationTime; 
+ 
+  /** 
+   * 锁状态，0，未锁，1，已经上锁 
+   */ 
+  @Column(nullable = false) 
+  private Integer status; 
+ 
+  public Lock(String tag, Date expirationTime, Integer status) { 
+    this.tag = tag; 
+    this.expirationTime = expirationTime; 
+    this.status = status; 
+  } 
+ 
+  public Lock() { 
+  } 
+} 
+```
+
+### 3.4 repository 
+
+repository层只添加了两个简单的方法，根据tag查找锁和根据tag删除锁的操作，内容如下： 
+
+```java
+package com.dalaoyang.repository; 
+
+import com.dalaoyang.entity.Lock; 
+import org.springframework.data.jpa.repository.JpaRepository; 
+
+
+public interface LockRepository extends JpaRepository<Lock, Long> { 
+
+  Lock findByTag(String tag); 
+
+  void deleteByTag(String tag); 
+} 
+```
+
