@@ -178,7 +178,7 @@ BufferedWriter bufferedWriter = new BufferedWriter(writer,1024);
 BIO模型处理多个连接： 
 ![title](https://raw.githubusercontent.com/lllpla/img/master/gitnote/2020/04/10/1586514551748-1586514551755.png)
 在这种模式中我们通常用一个线程去接受请求，然后用一个线程池去处理请求，用这种方式并发管理多个Socket客户端连接，像这样： 
-
+![title](https://raw.githubusercontent.com/lllpla/img/master/gitnote/2020/04/10/1586514571943-1586514571948.png)
 使用BIO模型进行网络编程的问题在于缺乏弹性伸缩能力，客户端并发访问数量和服务器线程数量是1:1的关系，而且平时由于阻塞会有大量的线程处于等待状态，等待输入或者输出数据就绪，造成资源浪费，在面对大量并发的情况下，如果不使用线程池直接new线程的话，就会大致线程膨胀，系统性能下降，有可能导致堆栈的内存溢出，而且频繁的创建销毁线程，更浪费资源 
 
 使用线程池可能是更优一点的方案，但是无法解决阻塞IO的阻塞问题，而且还需要考虑如果线程池的数量设置较小就会拒绝大量的Socket客户端的连接，如果线程池数量设置较大的时候，会导致大量的上下文切换，而且程序要为每个线程的调用栈都分配内存，其默认值大小区间为 64 KB 到 1 MB，浪费虚拟机内存 
@@ -194,15 +194,16 @@ JDK 1.4版本以来，JDK发布了全新的I/O类库，简称NIO，是一种同�
 同步非阻塞IO模型实现： 
 
 **非阻塞IO模型** 
-
+![title](https://raw.githubusercontent.com/lllpla/img/master/gitnote/2020/04/10/1586514593330-1586514593336.png)
 应用进程调用**recvfrom**系统调用，如果内核数据没有准备好，会直接返回一个EWOULDBLOCK错误，应用进程不会阻塞，但是需要应用进程不断的轮询调用**recvfrom**，直到内核数据准备就绪，之后等待数据从内核复制到用户空间（这段时间会阻塞，但是耗时极小），复制完成后返回 
 
 ### 2、IO复用模型 
+![title](https://raw.githubusercontent.com/lllpla/img/master/gitnote/2020/04/10/1586514619455-1586514619460.png)
 
 IO复用模型，利用Linux系统提供的**select，poll**系统调用，将一个或者多个文件句柄（网络编程中的客户端链接）传递给select或者poll系统调用，应用进程阻塞在select上，这样就形成了一个进程对应多个Socket链接，然后select/poll会线性扫描这个Socket链接的集合，当只有少数socket有数据的时候，会导致效率下降，而且select/poll受限于所持有的文件句柄数量，默认值是1024个 
 
 ### 3、信号驱动 IO模型 
-
+![title](https://raw.githubusercontent.com/lllpla/img/master/gitnote/2020/04/10/1586514632646-1586514632650.png)
 系统调用sigaction执行一个信号处理函数，这个系统调用不会阻塞应用进程，当数据准备就绪的时候，就为该进程生成一个SIGIO信号，通过信号回调通知应用程序调用recvfrom来读取数据 
 
 ### 4、NIO的核心概念 
