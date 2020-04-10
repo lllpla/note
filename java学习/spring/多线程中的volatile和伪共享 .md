@@ -34,4 +34,78 @@ reference引用 (4/8 字节)
 在了解这些之后，就可以在任意字段间用7个long来填充缓存行。伪共享在不同的JDK下提供了不同的解决方案。 
 
 **在JDK1.6环境下，解决伪共享的办法是使用缓存行填充**，使一个对象占用的内存大小刚好为64bytes或它的整数倍，这样就保证了一个缓存行里不会有多个对象。 
+```java
+package basic; 
+
+public class TestFlash implements Runnable { 
+
+public final static int  NUM_THREADS = 4;                   // change 
+    public final static long ITERATIONS  = 500L * 1000L * 1000L; 
+    private final int        arrayIndex; 
+
+     /** 
+     * 为了展示其性能影响，我们启动几个线程，每个都更新它自己独立的计数器。计数器是volatile long类型的，所以其它线程能看到它们的进展。 
+     */ 
+    public final static class VolatileLong { 
+
+        /* 用volatile[ˈvɑ:lətl]修饰的变量，线程在每次使用变量的时候，JVM虚拟机只保证从主内存加载到线程工作内存的值是最新的 */ 
+        public volatile long value = 0L; 
+
+        /* 缓冲行填充 */ 
+        /* 37370571461 ：不使用缓冲行执行纳秒数 */ 
+        /* 16174480826 ：使用缓冲行执行纳秒数，性能提高一半 */ 
+        public long          p1, p2, p3, p4, p5, p6, p7; 
+    } 
+
+private static VolatileLong[] longs = new VolatileLong[NUM_THREADS]; 
+    static { 
+        for (int i = 0; i < longs.length; i++) { 
+            longs[i] = new VolatileLong(); 
+        } 
+    } 
+
+public TestFlash(final int arrayIndex){ 
+        this.arrayIndex = arrayIndex; 
+    } 
+
+     /** 
+     * 我们不能确定这些VolatileLong会布局在内存的什么位置。它们是独立的对象。但是经验告诉我们同一时间分配的对象趋向集中于一块。 
+     */ 
+    public static void main(final String[] args) throws Exception { 
+        final long start = System.nanoTime(); 
+        runTest(); 
+        System.out.println("duration = " + (System.nanoTime() - start)); 
+    } 
+
+private static void runTest() throws InterruptedException { 
+        Thread[] threads = new Thread[NUM_THREADS]; 
+
+for (int i = 0; i < threads.length; i++) { 
+            threads[i] = new Thread(new TestFlash(i)); 
+        } 
+
+for (Thread t : threads) { 
+            t.start(); 
+        } 
+
+for (Thread t : threads) { 
+            t.join(); 
+        } 
+    } 
+
+     /* 
+     * 为了展示其性能影响，我们启动几个线程，每个都更新它自己独立的计数器。计数器是volatile long类型的，所以其它线程能看到它们的进展 
+     */ 
+    @Override 
+    public void run() { 
+        long i = ITERATIONS + 1; 
+        while (0 != --i) { 
+            longs[arrayIndex].value = i; 
+        } 
+    } 
+} 
 ```
+
+VolatileLong通过填充一些无用的字段p1,p2,p3,p4,p5,p6，再考虑到对象头也占用8bit, 刚好把对象占用的内存扩展到刚好占64bytes（或者64bytes的整数倍）。这样就避免了一个缓存行中加载多个对象。但这个方法现在只能适应JAVA6 及以前的版本了。 
+ 
+在jdk1.7环境下，由于java 7会优化掉无用的字段。因此，JAVA 7下做缓存行填充更麻烦了，需要使用继承的办法来避免填充被优化掉。把填充放在基类里面，可以避免优化（这好像没有什么道理好讲的，JAVA7的内存优化算法问题，能绕则绕）。 
