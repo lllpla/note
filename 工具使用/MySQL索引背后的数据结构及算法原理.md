@@ -70,8 +70,17 @@ key和指针互相间隔，节点两端是指针。
 
 由于B-Tree的特性，在B-Tree中按key检索数据的算法非常直观：首先从根节点进行二分查找，如果找到则返回对应节点的data，否则对相应区间的指针指向的节点递归进行查找，直到找到节点或找到null指针，前者查找成功，后者查找失败。B-Tree上查找算法的伪代码如下：
 
-```
-BTree_Search(node, key) {    if(node == null) return null;    foreach(node.key)    {        if(node.key[i] == key) return node.data[i];            if(node.key[i] > key) return BTree_Search(point[i]->node);    }    return BTree_Search(point[i+1]->node);}data = BTree_Search(root, my_key);
+```c++
+BTree_Search(node, key) {
+    if(node == null) return null;
+    foreach(node.key)
+    {
+        if(node.key[i] == key) return node.data[i];
+            if(node.key[i] > key) return BTree_Search(point[i]->node);
+    }
+    return BTree_Search(point[i+1]->node);
+}
+data = BTree_Search(root, my_key);
 ```
 
 关于B-Tree有一系列有趣的性质，例如一个度为d的B-Tree，设其索引N个key，则其树高h的上限为logd((N+1)/2)logd((N+1)/2)，检索一个key，其查找节点个数的渐进复杂度为O(logdN)O(logdN)。从这点可以看出，B-Tree是一个非常有效率的索引数据结构。
