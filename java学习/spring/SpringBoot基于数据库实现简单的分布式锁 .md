@@ -41,6 +41,8 @@ CREATE TABLE `lock_info` (
 
 ## 3.实现
 
+### 3.1 POM
+
 新建项目，在项目中加入jpa和mysql依赖，完整内容如下： 
 
 ```xml
@@ -102,4 +104,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 </project> 
 ```
 
- 
+ ### 3.2 配置文件
+
+### 3.3 实体
