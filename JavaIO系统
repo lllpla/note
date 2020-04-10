@@ -509,6 +509,7 @@ server.accept(null, new CompletionHandler() {
 
 客户端向服务端发送消息，并接受服务端发送的消息 
 
+```java
 AsynchronousSocketChannel client = AsynchronousSocketChannel.open(); 
 Future future = client.connect(new InetSocketAddress("127.0.0.1", 9001)); 
 //阻塞，获取连接 
@@ -536,7 +537,8 @@ if(r>0){
     System.out.println("客户端消息发送成功"); 
 } 
 //休眠线程 
-TimeUnit.SECONDS.sleep(1000L);复制代码 
+TimeUnit.SECONDS.sleep(1000L);
+```
 
 四、总结 
 
