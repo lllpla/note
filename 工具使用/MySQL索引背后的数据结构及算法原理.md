@@ -314,7 +314,7 @@ ALTER TABLE employees.titles DROP INDEX emp_no;
 
 ### 情况二：最左前缀匹配。
 
-```
+```mysql
 EXPLAIN SELECT * FROM employees.titles WHERE emp_no='10001';
 +----+-------------+--------+------+---------------+---------+---------+-------+------+-------+
 | id | select_type | table  | type | possible_keys | key     | key_len | ref   | rows | Extra |
@@ -327,7 +327,7 @@ EXPLAIN SELECT * FROM employees.titles WHERE emp_no='10001';
 
 ### 情况三：查询条件用到了索引中列的精确匹配，但是中间某个条件未提供。
 
-```
+```mysql
 EXPLAIN SELECT * FROM employees.titles WHERE emp_no='10001' AND from_date='1986-06-26';
 +----+-------------+--------+------+---------------+---------+---------+-------+------+-------------+
 | id | select_type | table  | type | possible_keys | key     | key_len | ref   | rows | Extra       |
@@ -371,7 +371,7 @@ AND from_date='1986-06-26';
 
 这次key_len为59，说明索引被用全了，但是从type和rows看出IN实际上执行了一个range查询，这里检查了7个key。看下两种查询的性能比较：
 
-```
+```sql
 SHOW PROFILES;
 +----------+------------+-------------------------------------------------------------------------------+
 | Query_ID | Duration   | Query                                                                         |
@@ -385,7 +385,7 @@ SHOW PROFILES;
 
 ### 情况四：查询条件没有指定索引第一列。
 
-```
+```sql
 EXPLAIN SELECT * FROM employees.titles WHERE from_date='1986-06-26';
 +----+-------------+--------+------+---------------+------+---------+------+--------+-------------+
 | id | select_type | table  | type | possible_keys | key  | key_len | ref  | rows   | Extra       |
@@ -398,7 +398,7 @@ EXPLAIN SELECT * FROM employees.titles WHERE from_date='1986-06-26';
 
 ### 情况五：匹配某列的前缀字符串。
 
-```
+```sql
 EXPLAIN SELECT * FROM employees.titles WHERE emp_no='10001' AND title LIKE 'Senior%';
 +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
 | id | select_type | table  | type  | possible_keys | key     | key_len | ref  | rows | Extra       |
@@ -411,7 +411,7 @@ EXPLAIN SELECT * FROM employees.titles WHERE emp_no='10001' AND title LIKE 'Seni
 
 ### 情况六：范围查询。
 
-```
+```sql
 EXPLAIN SELECT * FROM employees.titles WHERE emp_no < '10010' and title='Senior Engineer';
 +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
 | id | select_type | table  | type  | possible_keys | key     | key_len | ref  | rows | Extra       |
@@ -422,14 +422,30 @@ EXPLAIN SELECT * FROM employees.titles WHERE emp_no < '10010' and title='Senior 
 
 范围列可以用到索引（必须是最左前缀），但是范围列后面的列无法用到索引。同时，索引最多用于一个范围列，因此如果查询条件中有两个范围列则无法全用到索引。
 
-```
-EXPLAIN SELECT * FROM employees.titlesWHERE emp_no < '10010'AND title='Senior Engineer'AND from_date BETWEEN '1986-01-01' AND '1986-12-31';+----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+| id | select_type | table  | type  | possible_keys | key     | key_len | ref  | rows | Extra       |+----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+|  1 | SIMPLE      | titles | range | PRIMARY       | PRIMARY | 4       | NULL |   16 | Using where |+----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
+```sql
+EXPLAIN SELECT * FROM employees.titles
+WHERE emp_no < '10010'
+AND title='Senior Engineer'
+AND from_date BETWEEN '1986-01-01' AND '1986-12-31';
++----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
+| id | select_type | table  | type  | possible_keys | key     | key_len | ref  | rows | Extra       |
++----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
+|  1 | SIMPLE      | titles | range | PRIMARY       | PRIMARY | 4       | NULL |   16 | Using where |
++----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
 ```
 
 可以看到索引对第二个范围索引无能为力。这里特别要说明MySQL一个有意思的地方，那就是仅用explain可能无法区分范围索引和多值匹配，因为在type中这两者都显示为range。同时，用了“between”并不意味着就是范围查询，例如下面的查询：
 
-```
-EXPLAIN SELECT * FROM employees.titlesWHERE emp_no BETWEEN '10001' AND '10010'AND title='Senior Engineer'AND from_date BETWEEN '1986-01-01' AND '1986-12-31';+----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+| id | select_type | table  | type  | possible_keys | key     | key_len | ref  | rows | Extra       |+----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+|  1 | SIMPLE      | titles | range | PRIMARY       | PRIMARY | 59      | NULL |   16 | Using where |+----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
+```mysql
+EXPLAIN SELECT * FROM employees.titles
+WHERE emp_no BETWEEN '10001' AND '10010'
+AND title='Senior Engineer'
+AND from_date BETWEEN '1986-01-01' AND '1986-12-31';
++----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
+| id | select_type | table  | type  | possible_keys | key     | key_len | ref  | rows | Extra       |
++----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
+|  1 | SIMPLE      | titles | range | PRIMARY       | PRIMARY | 59      | NULL |   16 | Using where |
++----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
 ```
 
 看起来是用了两个范围查询，但作用于emp_no上的“BETWEEN”实际上相当于“IN”，也就是说emp_no实际是多值精确匹配。可以看到这个查询用到了索引全部三个列。因此在MySQL中要谨慎地区分多值匹配和范围匹配，否则会对MySQL的行为产生困惑。
@@ -438,16 +454,26 @@ EXPLAIN SELECT * FROM employees.titlesWHERE emp_no BETWEEN '10001' AND '10010'AN
 
 很不幸，如果查询条件中含有函数或表达式，则MySQL不会为这列使用索引（虽然某些在数学意义上可以使用）。例如：
 
-```
-EXPLAIN SELECT * FROM employees.titles WHERE emp_no='10001' AND left(title, 6)='Senior';+----+-------------+--------+------+---------------+---------+---------+-------+------+-------------+| id | select_type | table  | type | possible_keys | key     | key_len | ref   | rows | Extra       |+----+-------------+--------+------+---------------+---------+---------+-------+------+-------------+|  1 | SIMPLE      | titles | ref  | PRIMARY       | PRIMARY | 4       | const |    1 | Using where |+----+-------------+--------+------+---------------+---------+---------+-------+------+-------------+
+```mysql
+EXPLAIN SELECT * FROM employees.titles WHERE emp_no='10001' AND left(title, 6)='Senior';
++----+-------------+--------+------+---------------+---------+---------+-------+------+-------------+
+| id | select_type | table  | type | possible_keys | key     | key_len | ref   | rows | Extra       |
++----+-------------+--------+------+---------------+---------+---------+-------+------+-------------+
+|  1 | SIMPLE      | titles | ref  | PRIMARY       | PRIMARY | 4       | const |    1 | Using where |
++----+-------------+--------+------+---------------+---------+---------+-------+------+-------------+
 ```
 
 虽然这个查询和情况五中功能相同，但是由于使用了函数left，则无法为title列应用索引，而情况五中用LIKE则可以。再如：
 
 
 
-```
-EXPLAIN SELECT * FROM employees.titles WHERE emp_no - 1='10000';+----+-------------+--------+------+---------------+------+---------+------+--------+-------------+| id | select_type | table  | type | possible_keys | key  | key_len | ref  | rows   | Extra       |+----+-------------+--------+------+---------------+------+---------+------+--------+-------------+|  1 | SIMPLE      | titles | ALL  | NULL          | NULL | NULL    | NULL | 443308 | Using where |+----+-------------+--------+------+---------------+------+---------+------+--------+-------------+
+```mysql
+EXPLAIN SELECT * FROM employees.titles WHERE emp_no - 1='10000';
++----+-------------+--------+------+---------------+------+---------+------+--------+-------------+
+| id | select_type | table  | type | possible_keys | key  | key_len | ref  | rows   | Extra       |
++----+-------------+--------+------+---------------+------+---------+------+--------+-------------+
+|  1 | SIMPLE      | titles | ALL  | NULL          | NULL | NULL    | NULL | 443308 | Using where |
++----+-------------+--------+------+---------------+------+---------+------+--------+-------------+
 ```
 
 显然这个查询等价于查询emp_no为10001的函数，但是由于查询条件是一个表达式，MySQL无法为其使用索引。看来MySQL还没有智能到自动优化常量表达式的程度，因此在写查询语句时尽量避免表达式出现在查询中，而是先手工私下代数运算，转换为无表达式的查询语句。
