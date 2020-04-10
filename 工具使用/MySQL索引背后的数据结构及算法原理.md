@@ -269,18 +269,15 @@ MySQL官方文档中关于此数据库的页面为http://dev.mysql.com/doc/emplo
 
 以employees.titles表为例，下面先查看其上都有哪些索引：
 
-```sql
-SHOW INDEX FROM employees.titles;
-```
-
-+--------+------------+----------+--------------+-------------+-----------+-------------+------+------------+
-| Table  | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Null | Index_type |
-+--------+------------+----------+--------------+-------------+-----------+-------------+------+------------+
-| titles |          0 | PRIMARY  |            1 | emp_no      | A         |        NULL |      | BTREE      |
-| titles |          0 | PRIMARY  |            2 | title       | A         |        NULL |      | BTREE      |
-| titles |          0 | PRIMARY  |            3 | from_date   | A         |      443308 |      | BTREE      |
-| titles |          1 | emp_no   |            1 | emp_no      | A         |      443308 |      | BTREE      |
-+--------+------------+----------+--------------+-------------+-----------+-------------+------+------------+
+>SHOW INDEX FROM employees.titles;
+>+--------+------------+----------+--------------+-------------+-----------+-------------+------+------------+
+>| Table  | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Null | Index_type |
+>+--------+------------+----------+--------------+-------------+-----------+-------------+------+------------+
+>| titles |          0 | PRIMARY  |            1 | emp_no      | A         |        NULL |      | BTREE      |
+>| titles |          0 | PRIMARY  |            2 | title       | A         |        NULL |      | BTREE      |
+>| titles |          0 | PRIMARY  |            3 | from_date   | A         |      443308 |      | BTREE      |
+>| titles |          1 | emp_no   |            1 | emp_no      | A         |      443308 |      | BTREE      |
+>+--------+------------+----------+--------------+-------------+-----------+-------------+------+------------+
 
 从结果中可以到titles表的主索引为<emp_no, title, from_date>，还有一个辅助索引<emp_no>。为了避免多个索引使事情变复杂（MySQL的SQL优化器在多索引时行为比较复杂），这里我们将辅助索引drop掉：
 
@@ -292,9 +289,12 @@ ALTER TABLE employees.titles DROP INDEX emp_no;
 
 ### 情况一：全列匹配。
 
-```
-EXPLAIN SELECT * FROM employees.titles WHERE emp_no='10001' AND title='Senior Engineer' AND from_date='1986-06-26';+----+-------------+--------+-------+---------------+---------+---------+-------------------+------+-------+| id | select_type | table  | type  | possible_keys | key     | key_len | ref               | rows | Extra |+----+-------------+--------+-------+---------------+---------+---------+-------------------+------+-------+|  1 | SIMPLE      | titles | const | PRIMARY       | PRIMARY | 59      | const,const,const |    1 |       |+----+-------------+--------+-------+---------------+---------+---------+-------------------+------+-------+
-```
+>EXPLAIN SELECT * FROM employees.titles WHERE emp_no='10001' AND title='Senior Engineer' AND from_date='1986-06-26';
+>+----+-------------+--------+-------+---------------+---------+---------+-------------------+------+-------+
+>| id | select_type | table  | type  | possible_keys | key     | key_len | ref               | rows | Extra |
+>+----+-------------+--------+-------+---------------+---------+---------+-------------------+------+-------+
+>|  1 | SIMPLE      | titles | const | PRIMARY       | PRIMARY | 59      | const,const,const |    1 |       |
+>+----+-------------+--------+-------+---------------+---------+---------+-------------------+------+-------+
 
 很明显，当按照索引中所有列进行精确匹配（这里精确匹配指“=”或“IN”匹配）时，索引可以被用到。这里有一点需要注意，理论上索引对顺序是敏感的，但是由于MySQL的查询优化器会自动调整where子句的条件顺序以使用适合的索引，例如我们将where中的条件顺序颠倒：
 
