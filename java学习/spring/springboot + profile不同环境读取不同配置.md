@@ -2,7 +2,7 @@
 
 ## **一、具体做法**
 
- 
+ ![title](https://raw.githubusercontent.com/lllpla/img/master/gitnote/2020/04/10/1586529383180-1586529383185.png)
 
 不同环境的配置设置一个配置文件，例如：dev环境下的配置配置在application-dev.properties中；prod环境下的配置配置在application-prod.properties中。在application.properties中指定使用哪一个文件：
 
