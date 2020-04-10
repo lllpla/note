@@ -66,8 +66,9 @@ Writer writer = new OutputStreamWriter(outputStream);
 
 **（1）从数据源中读取数据** 
 
-输入字节流：InputStream复制代码 
+输入字节流：InputStream
 
+```java
 public static void main(String[] args) throws Exception{ 
     File file = new File("D:/a.txt"); 
     InputStream inputStream = new FileInputStream(file); 
@@ -77,7 +78,11 @@ public static void main(String[] args) throws Exception{
     inputStream.close(); 
 } 
  
+```
+
 输入字符流：Reader 
+
+```java
 public static void main(String[] args) throws Exception{ 
     File file = new File("D:/a.txt"); 
     Reader reader = new FileReader(file); 
@@ -85,7 +90,8 @@ public static void main(String[] args) throws Exception{
     reader.read(bytes); 
     System.out.println(new String(bytes)); 
     reader.close(); 
-}复制代码 
+}
+```
 
 **（2）输出到目标媒介** 
 
