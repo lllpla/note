@@ -212,3 +212,101 @@ public interface LockRepository extends JpaRepository<Lock, Long> {
 } 
 ```
 
+### 3.5 service 
+
+service接口定义了两个方法，获取锁和释放锁，内容如下： 
+
+```java
+package com.dalaoyang.service; 
+ 
+ 
+public interface LockService { 
+ 
+  /** 
+   * 尝试获取锁 
+   * @param tag 锁的键 
+   * @param expiredSeconds 锁的过期时间（单位：秒），默认10s 
+   * @return 
+   */ 
+  boolean tryLock(String tag, Integer expiredSeconds); 
+ 
+  /** 
+   * 释放锁 
+   * @param tag 锁的键 
+   */ 
+  void unlock(String tag); 
+} 
+```
+
+ 
+
+实现类对上面方法进行了实现，其内容与上述流程图中一致，这里不在做介绍，完整内容如下： 
+
+```java
+package com.dalaoyang.service.impl; 
+
+import com.dalaoyang.entity.Lock; 
+import com.dalaoyang.repository.LockRepository; 
+import com.dalaoyang.service.LockService; 
+import org.springframework.beans.factory.annotation.Autowired; 
+import org.springframework.stereotype.Service; 
+import org.springframework.transaction.annotation.Propagation; 
+import org.springframework.transaction.annotation.Transactional; 
+import org.springframework.util.StringUtils; 
+
+import java.util.Calendar; 
+import java.util.Date; 
+import java.util.Objects; 
+
+
+@Service 
+public class LockServiceImpl implements LockService { 
+
+  private final Integer DEFAULT_EXPIRED_SECONDS = 10; 
+
+  @Autowired 
+  private LockRepository lockRepository; 
+
+  @Override 
+  @Transactional(rollbackFor = Throwable.class) 
+  public boolean tryLock(String tag, Integer expiredSeconds) { 
+    if (StringUtils.isEmpty(tag)) { 
+      throw new NullPointerException(); 
+    } 
+    Lock lock = lockRepository.findByTag(tag); 
+    if (Objects.isNull(lock)) { 
+      lockRepository.save(new Lock(tag, this.addSeconds(new Date(), expiredSeconds), Lock.LOCKED_STATUS)); 
+      return true; 
+    } else { 
+      Date expiredTime = lock.getExpirationTime(); 
+      Date now = new Date(); 
+      if (expiredTime.before(now)) { 
+        lock.setExpirationTime(this.addSeconds(now, expiredSeconds)); 
+        lockRepository.save(lock); 
+        return true; 
+      } 
+    } 
+    return false; 
+  } 
+
+  @Override 
+  @Transactional(rollbackFor = Throwable.class) 
+  public void unlock(String tag) { 
+    if (StringUtils.isEmpty(tag)) { 
+      throw new NullPointerException(); 
+    } 
+    lockRepository.deleteByTag(tag); 
+  } 
+
+  private Date addSeconds(Date date, Integer seconds) { 
+    if (Objects.isNull(seconds)){ 
+      seconds = DEFAULT_EXPIRED_SECONDS; 
+    } 
+    Calendar calendar = Calendar.getInstance(); 
+    calendar.setTime(date); 
+    calendar.add(Calendar.SECOND, seconds); 
+    return calendar.getTime(); 
+  } 
+} 
+```
+
