@@ -328,21 +328,45 @@ EXPLAIN SELECT * FROM employees.titles WHERE emp_no='10001';
 ### 情况三：查询条件用到了索引中列的精确匹配，但是中间某个条件未提供。
 
 ```
-EXPLAIN SELECT * FROM employees.titles WHERE emp_no='10001' AND from_date='1986-06-26';+----+-------------+--------+------+---------------+---------+---------+-------+------+-------------+| id | select_type | table  | type | possible_keys | key     | key_len | ref   | rows | Extra       |+----+-------------+--------+------+---------------+---------+---------+-------+------+-------------+|  1 | SIMPLE      | titles | ref  | PRIMARY       | PRIMARY | 4       | const |    1 | Using where |+----+-------------+--------+------+---------------+---------+---------+-------+------+-------------+
+EXPLAIN SELECT * FROM employees.titles WHERE emp_no='10001' AND from_date='1986-06-26';
++----+-------------+--------+------+---------------+---------+---------+-------+------+-------------+
+| id | select_type | table  | type | possible_keys | key     | key_len | ref   | rows | Extra       |
++----+-------------+--------+------+---------------+---------+---------+-------+------+-------------+
+|  1 | SIMPLE      | titles | ref  | PRIMARY       | PRIMARY | 4       | const |    1 | Using where |
++----+-------------+--------+------+---------------+---------+---------+-------+------+-------------+
 ```
 
 此时索引使用情况和情况二相同，因为title未提供，所以查询只用到了索引的第一列，而后面的from_date虽然也在索引中，但是由于title不存在而无法和左前缀连接，因此需要对结果进行扫描过滤from_date（这里由于emp_no唯一，所以不存在扫描）。如果想让from_date也使用索引而不是where过滤，可以增加一个辅助索引<emp_no, from_date>，此时上面的查询会使用这个索引。除此之外，还可以使用一种称之为“隔离列”的优化方法，将emp_no与from_date之间的“坑”填上。
 
 首先我们看下title一共有几种不同的值：
 
-```
-SELECT DISTINCT(title) FROM employees.titles;+--------------------+| title              |+--------------------+| Senior Engineer    || Staff              || Engineer           || Senior Staff       || Assistant Engineer || Technique Leader   || Manager            |+--------------------+
+```sql
+SELECT DISTINCT(title) FROM employees.titles;
++--------------------+
+| title              |
++--------------------+
+| Senior Engineer    |
+| Staff              |
+| Engineer           |
+| Senior Staff       |
+| Assistant Engineer |
+| Technique Leader   |
+| Manager            |
++--------------------+
 ```
 
 只有7种。在这种成为“坑”的列值比较少的情况下，可以考虑用“IN”来填补这个“坑”从而形成最左前缀：
 
-```
-EXPLAIN SELECT * FROM employees.titlesWHERE emp_no='10001'AND title IN ('Senior Engineer', 'Staff', 'Engineer', 'Senior Staff', 'Assistant Engineer', 'Technique Leader', 'Manager')AND from_date='1986-06-26';+----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+| id | select_type | table  | type  | possible_keys | key     | key_len | ref  | rows | Extra       |+----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+|  1 | SIMPLE      | titles | range | PRIMARY       | PRIMARY | 59      | NULL |    7 | Using where |+----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
+```sql
+EXPLAIN SELECT * FROM employees.titles
+WHERE emp_no='10001'
+AND title IN ('Senior Engineer', 'Staff', 'Engineer', 'Senior Staff', 'Assistant Engineer', 'Technique Leader', 'Manager')
+AND from_date='1986-06-26';
++----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
+| id | select_type | table  | type  | possible_keys | key     | key_len | ref  | rows | Extra       |
++----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
+|  1 | SIMPLE      | titles | range | PRIMARY       | PRIMARY | 59      | NULL |    7 | Using where |
++----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
 ```
 
 这次key_len为59，说明索引被用全了，但是从type和rows看出IN实际上执行了一个range查询，这里检查了7个key。看下两种查询的性能比较：
