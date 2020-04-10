@@ -59,21 +59,36 @@ Optional<Car> optCar = Optional.empty();
 
 - **of**方法一般不用，不过如果你知道某个值不可能为null，则可以用Optional封装该值，这样它一旦为null就会抛出异常。 
 
+```java
 //of方法的使用  
-
 Optional<Car> optCar = Optional.of(car); 
+```
 
  
 
 - 你可以使用**map**方法从Optional对象中它封装的值中的某个字段的值； 
 
-Optional<Insurance> optInsurance = Optional.ofNullable(insurance);  Optional<String> name = optInsurance.map(Insurance::getName); 
-
- 
+```java
+Optional<Insurance> optInsurance = Optional.ofNullable(insurance);  
+Optional<String> name = optInsurance.map(Insurance::getName); 
+```
 
 - 如果需要连续、层层递进的从某个对象链的末端获取字段的值，则不能全部使用map方法，需要先使用**flatMap**，最后再使用map方法； 
 
-//转换之前  public String getCarInsuranceName(Person person) {   return person.getCar().getInsurance().getName();  }    //转换后  public String getCarInsuranceName(Optional<Person> person) {   return person.flatMap(Person::getCar)          .flatMap(Car::Insurance)          .map(Insurance::getName)          .orElse("Unknown");  } 
+```java
+//转换之前 
+public String getCarInsuranceName(Person person) { 
+  return person.getCar().getInsurance().getName(); 
+} 
+ 
+//转换后 
+public String getCarInsuranceName(Optional<Person> person) { 
+  return person.flatMap(Person::getCar) 
+               .flatMap(Car::Insurance) 
+               .map(Insurance::getName) 
+               .orElse("Unknown"); 
+} 
+```
 
  
 
