@@ -56,11 +56,11 @@ Reader reader = new InputStreamReader(inputStream);
 Writer writer = new OutputStreamWriter(outputStream);
 ```
 
-我们可以在程序中通过InputStream和Reader从数据源中读取数据，然后也可以在程序中将数据通过OutputStream和Writer输出到目标媒介中 
+我们可以在程序中通过InputStream和Reader从数据源中读取数据，然后也可以在程序中将数据通过OutputStream和Writer输出到目标媒介中 。
 
-在使用字节流的时候，InputStream和OutputStream都是抽象类，我们实例化的都是他们的子类，每一个子类都有自己的作用范围 
-
-在使用字符流的时候也是，Reader和Writer都是抽象类，我们实例化的都是他们的子类，每一个子类都有自己的作用范围 
+> 在使用字节流的时候，InputStream和OutputStream都是抽象类，我们实例化的都是他们的子类，每一个子类都有自己的作用范围 
+>
+> 在使用字符流的时候也是，Reader和Writer都是抽象类，我们实例化的都是他们的子类，每一个子类都有自己的作用范围 
 
 **以读写文件为例** 
 
