@@ -298,9 +298,17 @@ ALTER TABLE employees.titles DROP INDEX emp_no;
 
 很明显，当按照索引中所有列进行精确匹配（这里精确匹配指“=”或“IN”匹配）时，索引可以被用到。这里有一点需要注意，理论上索引对顺序是敏感的，但是由于MySQL的查询优化器会自动调整where子句的条件顺序以使用适合的索引，例如我们将where中的条件顺序颠倒：
 
-```
-EXPLAIN SELECT * FROM employees.titles WHERE from_date='1986-06-26' AND emp_no='10001' AND title='Senior Engineer';+----+-------------+--------+-------+---------------+---------+---------+-------------------+------+-------+| id | select_type | table  | type  | possible_keys | key     | key_len | ref               | rows | Extra |+----+-------------+--------+-------+---------------+---------+---------+-------------------+------+-------+|  1 | SIMPLE      | titles | const | PRIMARY       | PRIMARY | 59      | const,const,const |    1 |       |+----+-------------+--------+-------+---------------+---------+---------+-------------------+------+-------+
-```
+>EXPLAIN SELECT * FROM employees.titles WHERE from_date='1986-06-26' AND emp_no='10001' AND title='Senior Engineer';
+>
+>+----+-------------+--------+-------+---------------+---------+---------+-------------------+------+-------+
+>
+>|   id  | select_type  | table  | type  | possible_keys | key     | key_len | ref               | rows | Extra |
+>
+>+----+-------------+--------+-------+---------------+---------+---------+-------------------+------+-------+
+>
+>|  1 | SIMPLE      | titles | const | PRIMARY       | PRIMARY | 59      | const,const,const |    1 |       |
+>
+>+----+-------------+--------+-------+---------------+---------+---------+-------------------+------+-------+
 
 效果是一样的。
 
