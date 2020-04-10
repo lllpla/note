@@ -6,7 +6,7 @@
 
 不过对于Optional这个特性，一直没有很好地使用起来，所以最近又开始阅读《Java 8实战》这本书，本文是针对其中第10章的一个学习总结。 
 
-## **一、背景** 
+## **一、背景**
 
 在Java中，如果你尝试对null做函数调用，就会引发NullPointerException（NPE），NPE是Java程序开发中的最典型的异常，对于Java开发者来说，无论你是初出茅庐的新人和还工作多年的老司机，NPE经常让他们翻车。为了避免NPE，他们会加很多if判断语句，使得代码的可读性变得很差。 
 
@@ -184,8 +184,6 @@ public static int readDuration(Properties properties, String name) {
 2. 接下来，可以使用flatMap将一个Optional转换为Optional对象； 
 3. 最后使用filter过滤掉负数，然后就可以使用orElse获取属性值，如果拿不到则返回默认值0。 
 
- 
-
-**五、总结** 
+## **五、总结** 
 
 使用Optional的思路和Stream相同，都是链式思路，跟数据库查询似的，表达力很强，而且省去了哪些复杂的try/catch和if-then-else方法。在后面的开发中，可以使用Optional设计API，这样可以设计出更安全的接口和方法。 
