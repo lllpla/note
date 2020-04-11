@@ -108,3 +108,82 @@ WITH TABLE TABLE_PARTITION_2 INCLUDING INDEXES;
   此时会发现第一个分区的数据和表TABLE_PARTITION_2做了瞬间交换，比TRUNCATE还要快，因为这个过程没有进行数据转存，只是段名称的修改过程，和实际的数据量没有关系。 
 
   如果是子分区也可以与外部的表进行交换，只需要将关键字修改为：SUBPARTITION 即可。 
+### 4.7、清空分区数据 
+```sql
+ALTER TABLE <table_name> TRUNCATE PARTITION <partition_name>;   
+   ALTER TABLE <table_name> TRUNCATE subpartition <subpartition_name>;   
+```
+### 4.8、磁盘碎片压缩 
+   对分区表的某分区进行磁盘压缩，当对分区内部数据进行了大量的UPDATE、DELETE操作后，一定时间需要进行磁盘压缩，否则在查询时，若通过FULL SCAN扫描数据，将会把空块也会扫描到，对表进行磁盘压缩需要进行行迁移操作，所以首先需要操作： 
+```
+ALTER TABLE <table_name> ENABLE ROW MOVEMENT ;   
+
+    
+
+    对分区表的某分区压缩语法为：   
+
+ALTER TABLE <table_name>   
+
+modify partition <partition_name> shrink space;   
+
+   对普通表压缩：   
+
+ALTER TABLE <table_name> shrink space;   
+
+  对于索引也需要进行压缩，索引也是表：   
+
+ALTER INDEX <index_name> shrink space;   
+
+  
+
+  
+
+10、分区表重新分析以及索引重新分析 
+
+  对表进行压缩后，需要对表和索引进行重新分析，对表进行重新分析，一般有两种方式： 
+
+  在ORACLE 10G以前，使用： 
+
+[sql] view plain copy 
+
+BEGIN   
+
+   dbms_stats.gather_table_stats(USER,UPPER('<table_name>'));   
+
+END;   
+
+   
+
+ORACLE 10G后，可以使用：   
+
+ANALYZE TABLE <table_name> COMPUTE STATISTICS;   
+
+  
+
+  索引重新分析，将上述两种方式分别修改一下，如第一种可以使用：gather_index_stats，而第二种修改为：ANALYZE INDEX即可，不过一般比较常用的是重新编译： 
+
+  对于分区表并进行了索引分区的情况，需要对每个分区的索引进行重新编译,这里以LOCAL索引为例子（其每个索引的分区和表分区结构相同，默认分区名称和表分区名称相同）： 
+
+[sql] view plain copy 
+
+ALTER INDEX <index_name> REBUILD PARTITION <partition_name>;   
+
+ 对于全局索引，根据全局索引锁定义的分区名称修改即可，若没有分区，和普通单表索引重新编译方式相同：   
+
+ALTER INDEX <index_name> REBUILD;   
+
+  
+
+11、关联对象重新编译 
+
+  上述对表、索引进行重新编译，尤其对表进行了压缩后会产生行迁移，这个过程可能会导致一些视图、过程对象的失效，此时要将其重新编译一次。 
+
+  
+
+  
+
+12、扩展：HASH分区中，如果创建了新的分区，可以将其进行重新HASH分布： 
+
+[sql] view plain copy 
+
+ALTER TABLE <table_name> COALESCA PARTITION   
