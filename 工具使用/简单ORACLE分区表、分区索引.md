@@ -94,3 +94,21 @@ ALTER TABLE <table_name> MODIFY PARTITION <partition_name> ADD SUBPARTITION <use
 ```sql
 ALTER TABLE TABLE_PARTITION RENAME PARTITION MERGED_PARTITION TO MERGED_PARTITION02;   
 ```
+### 4.6、交换分区（快速交换数据，其实是交换段名称指针） 
+  首先创建一个交换表，和原表结构相同，如果有数据，必须符合所交换对应分区的条件： 
+```sql 
+CREATE TABLE TABLE_PARTITION_2   
+  AS SELECT * FROM TABLE_PARTITION WHERE 1=2;   
+```
+  然后将第一个分区的数据交换出去： 
+[sql] view plain copy 
+
+ALTER TABLE TABLE_PARTITION EXCHANGE PARTITION TAB_PARTOTION_01    
+
+WITH TABLE TABLE_PARTITION_2 INCLUDING INDEXES;   
+
+  此时会发现第一个分区的数据和表TABLE_PARTITION_2做了瞬间交换，比TRUNCATE还要快，因为这个过程没有进行数据转存，只是段名称的修改过程，和实际的数据量没有关系。 
+
+  
+
+  如果是子分区也可以与外部的表进行交换，只需要将关键字修改为：SUBPARTITION 即可。 
