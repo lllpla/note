@@ -153,16 +153,13 @@ ALTER INDEX <index_name> REBUILD PARTITION <partition_name>;
 ```sql
 ALTER INDEX <index_name> REBUILD;   
 ```
-11、关联对象重新编译 
+### 4.10、关联对象重新编译 
 
   上述对表、索引进行重新编译，尤其对表进行了压缩后会产生行迁移，这个过程可能会导致一些视图、过程对象的失效，此时要将其重新编译一次。 
 
-  
-
-  
-
-12、扩展：HASH分区中，如果创建了新的分区，可以将其进行重新HASH分布： 
-
-[sql] view plain copy 
-
+### 4.11、扩展：HASH分区中，如果创建了新的分区，可以将其进行重新HASH分布： 
+```sql
 ALTER TABLE <table_name> COALESCA PARTITION   
+```
+## 5、回归总结
+何时建分区，分区类别，索引，如何对应SQL 
