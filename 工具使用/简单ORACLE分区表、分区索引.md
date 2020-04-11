@@ -14,3 +14,15 @@ Hash分区方式，它没有固定的规则，由ORACLE管理，只需要将值I
 ![title](https://raw.githubusercontent.com/lllpla/img/master/gitnote/2020/04/11/1586600325966-1586600325970.png)
 ### 2.2、对于分区表的分区索引: 
 ![title](https://raw.githubusercontent.com/lllpla/img/master/gitnote/2020/04/11/1586600355358-1586600355365.png)
+全局分区索引 
+
+创建语法为： 
+```sql
+CREATE INDEX INX_TAB_PARTITION_COL1 ON TABLE_PARTITION(COL1)   
+GLOBAL PARTITION BY RANGE(COL1)(   
+         PARTITION IDX_P1 values less than (1000000),   
+         PARTITION IDX_P2 values less than (2000000),   
+         PARTITION IDX_P3 values less than (MAXVALUE)   
+  );   
+```
+### 2.3、LOCAL索引结构： 
