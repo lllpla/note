@@ -115,39 +115,28 @@ ALTER TABLE <table_name> TRUNCATE PARTITION <partition_name>;
 ```
 ### 4.8、磁盘碎片压缩 
    对分区表的某分区进行磁盘压缩，当对分区内部数据进行了大量的UPDATE、DELETE操作后，一定时间需要进行磁盘压缩，否则在查询时，若通过FULL SCAN扫描数据，将会把空块也会扫描到，对表进行磁盘压缩需要进行行迁移操作，所以首先需要操作： 
-```
+```sql
 ALTER TABLE <table_name> ENABLE ROW MOVEMENT ;   
-
-    
-
-    对分区表的某分区压缩语法为：   
-
+```
+对分区表的某分区压缩语法为：   
+```sql
 ALTER TABLE <table_name>   
-
 modify partition <partition_name> shrink space;   
-
-   对普通表压缩：   
-
+```
+对普通表压缩：   
+```sql
 ALTER TABLE <table_name> shrink space;   
-
+```
   对于索引也需要进行压缩，索引也是表：   
-
+```sql
 ALTER INDEX <index_name> shrink space;   
-
-  
-
-  
-
-10、分区表重新分析以及索引重新分析 
-
+```
+### 4.9.分区表重新分析以及索引重新分析 
   对表进行压缩后，需要对表和索引进行重新分析，对表进行重新分析，一般有两种方式： 
 
   在ORACLE 10G以前，使用： 
-
-[sql] view plain copy 
-
+```sql
 BEGIN   
-
    dbms_stats.gather_table_stats(USER,UPPER('<table_name>'));   
 
 END;   
