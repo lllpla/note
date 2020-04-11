@@ -136,33 +136,23 @@ ALTER INDEX <index_name> shrink space;
 
   在ORACLE 10G以前，使用： 
 ```sql
-BEGIN   
-   dbms_stats.gather_table_stats(USER,UPPER('<table_name>'));   
-
+BEGIN      dbms_stats.gather_table_stats(USER,UPPER('<table_name>'));   
 END;   
-
-   
-
+```
 ORACLE 10G后，可以使用：   
-
+```sql
 ANALYZE TABLE <table_name> COMPUTE STATISTICS;   
-
-  
-
+```
   索引重新分析，将上述两种方式分别修改一下，如第一种可以使用：gather_index_stats，而第二种修改为：ANALYZE INDEX即可，不过一般比较常用的是重新编译： 
 
   对于分区表并进行了索引分区的情况，需要对每个分区的索引进行重新编译,这里以LOCAL索引为例子（其每个索引的分区和表分区结构相同，默认分区名称和表分区名称相同）： 
-
-[sql] view plain copy 
-
+```sql
 ALTER INDEX <index_name> REBUILD PARTITION <partition_name>;   
-
+```
  对于全局索引，根据全局索引锁定义的分区名称修改即可，若没有分区，和普通单表索引重新编译方式相同：   
-
+```sql
 ALTER INDEX <index_name> REBUILD;   
-
-  
-
+```
 11、关联对象重新编译 
 
   上述对表、索引进行重新编译，尤其对表进行了压缩后会产生行迁移，这个过程可能会导致一些视图、过程对象的失效，此时要将其重新编译一次。 
