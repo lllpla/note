@@ -37,4 +37,21 @@ CREATE INDEX INX_TAB_PARTITION_COL1 ON TABLE_PARTITION(COL1) LOCAL;
 ### 2.4、对比索引方式： 
 
   一般使用LOCAL索引较为方便，而且维护代价较低，并且LOCAL索引是在分区的基础上去创建索引，类似于在一个子表内部去创建索引，这样开销主要是区分分区上，很规范的管理起来，在OLAP系统中应用很广泛；而相对的GLOBAL索引是全局类型的索引，根据实际情况可以调整分区的类别，而并非按照分区结构一一定义，相对维护代价较高一些，在OLTP环境用得相对较多，这里所谓OLTP和OLAP也是相对的，不是特殊的项目，没有绝对的划分概念，在应用过程中依据实际情况而定，来提高整体的运行性能。 
-3、常用视图
+## 3、常用视图
+```sql
+1、查询当前用户下有哪些是分区表：   
+SELECT * FROM USER_PART_TABLES;       
+2、查询当前用户下有哪些分区索引：   
+SELECT * FROM USER_PART_INDEXES;       
+3、查询当前用户下分区索引的分区信息：   
+SELECT * FROM USER_IND_PARTITIONS T   
+WHERE T.INDEX_NAME=?       
+4、查询当前用户下分区表的分区信息：   
+SELECT * FROM USER_TAB_PARTITIONS T   
+WHERE T.TABLE_NAME=?;       
+5、查询某分区下的数据量：   
+SELECT COUNT(*) FROM TABLE_PARTITION PARTITION(TAB_PARTOTION_01);   
+6、查询索引、表上在那些列上创建了分区：   
+SELECT * FROM USER_PART_KEY_COLUMNS;       
+7、查询某用户下二级分区的信息（只有创建了二级分区才有数据）：   
+SELECT * FROM USER_TAB_SUBPARTITIONS;  
