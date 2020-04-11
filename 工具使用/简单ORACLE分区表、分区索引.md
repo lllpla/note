@@ -26,3 +26,15 @@ GLOBAL PARTITION BY RANGE(COL1)(
   );   
 ```
 ### 2.3、LOCAL索引结构： 
+![title](https://raw.githubusercontent.com/lllpla/img/master/gitnote/2020/04/11/1586600435996-1586600436002.png)
+创建语法为： 
+```sql
+CREATE INDEX INX_TAB_PARTITION_COL1 ON TABLE_PARTITION(COL1) LOCAL;   
+```
+也可按照分区表的的分区结构给与一一定义，索引的分区将得到重命名。 
+
+分区上的位图索引只能为LOCAL索引，不能为GLOBAL全局索引。 
+### 2.4、对比索引方式： 
+
+  一般使用LOCAL索引较为方便，而且维护代价较低，并且LOCAL索引是在分区的基础上去创建索引，类似于在一个子表内部去创建索引，这样开销主要是区分分区上，很规范的管理起来，在OLAP系统中应用很广泛；而相对的GLOBAL索引是全局类型的索引，根据实际情况可以调整分区的类别，而并非按照分区结构一一定义，相对维护代价较高一些，在OLTP环境用得相对较多，这里所谓OLTP和OLAP也是相对的，不是特殊的项目，没有绝对的划分概念，在应用过程中依据实际情况而定，来提高整体的运行性能。 
+3、常用视图
