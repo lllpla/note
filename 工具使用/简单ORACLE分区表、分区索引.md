@@ -55,3 +55,40 @@ SELECT COUNT(*) FROM TABLE_PARTITION PARTITION(TAB_PARTOTION_01);
 SELECT * FROM USER_PART_KEY_COLUMNS;       
 7、查询某用户下二级分区的信息（只有创建了二级分区才有数据）：   
 SELECT * FROM USER_TAB_SUBPARTITIONS;  
+```
+## 4、维护操作
+### 4.1、删除分区 
+```sql
+ALTER TABLE TABLE_PARTITION DROP PARTITION TAB_PARTOTION_03;   
+```
+如果是全局索引，因为全局索引的分区结构和表可以不一致，若不一致的情况下，会导致整个全局索引失效，在删除分区的时候，语句修改为：   
+```sql
+ALTER TABLE TABLE_PARTITION DROP PARTITION TAB_PARTOTION_03 UPDATE GLOBAL INDEXES   
+```
+### 4.2、分区合并（从中间删除掉一个分区，或者两个分区需要合并后减少分区数量） 
+
+    合并分区和删除中间的RANGE有点像，但是合并分区是不会删除数据的，对于LIST、HASH分区也是和RANGE分区不一样的，其语法为： 
+
+[sql] view plain copy 
+
+ALTER TABLE TABLE_PARTITION MERGE PARTITIONS    TAB_PARTOTION_01,TAB_PARTOTION_02 INTO PARTITION MERGED_PARTITION;   
+
+  
+
+  
+
+4.3、分隔分区（一般分区从扩展分区从分隔）  
+
+[sql] view plain copy 
+
+ALTER TABLE TABLE_PARTITION SPLIT PARTITION TAB_PARTOTION_OTHERE AT(2500000)    
+
+INTO (PARTITION TAB_PARTOTION_05,PARTITION TAB_PARTOTION_OTHERE);   
+
+  
+
+4.4、创建新的分区（分区数据若不能提供范围，则插入时会报错，需要增加分区来扩大范围） 
+
+一般有扩展分区的是都是用分隔的方式，若上述创建表时没有创建TAB_PARTOTION_OTHER分区时，在插入数据较大时（按照上述建立规则，超过1800000就应该创建新的分区来存储），就可以创建新的分区，如： 
+
+为了试验，我们将扩展分区先删除掉再创建新的分区（因为ORACLE要求，分区的数据不允许重叠，即按照分区字段同样的数据不能同时存储在不同的分区中）： 
