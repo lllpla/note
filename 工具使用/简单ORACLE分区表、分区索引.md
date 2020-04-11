@@ -81,8 +81,16 @@ INTO (PARTITION TAB_PARTOTION_05,PARTITION TAB_PARTOTION_OTHERE);
 一般有扩展分区的是都是用分隔的方式，若上述创建表时没有创建TAB_PARTOTION_OTHER分区时，在插入数据较大时（按照上述建立规则，超过1800000就应该创建新的分区来存储），就可以创建新的分区，如： 
 
 为了试验，我们将扩展分区先删除掉再创建新的分区（因为ORACLE要求，分区的数据不允许重叠，即按照分区字段同样的数据不能同时存储在不同的分区中）： 
-```
+```sql
 ALTER TABLE TABLE_PARTITION DROP PARTITION TAB_PARTOTION_OTHER;   
 
 ALTER TABLE TABLE_PARTITION ADD PARTITION TAB_PARTOTION_06 VALUES LESS THAN(2500000); 
+```
+在分区下创建新的子分区大致如下（RANGE分区，若为LIST或HASH分区，将创建方式修改为对应的方式即可）： 
+```sql
+ALTER TABLE <table_name> MODIFY PARTITION <partition_name> ADD SUBPARTITION <user_define_subpartition_name> VALUES LESS THAN(....);   
+```
+### 4.5、修改分区名称（修改相关的属性信息） 
+```sql
+ALTER TABLE TABLE_PARTITION RENAME PARTITION MERGED_PARTITION TO MERGED_PARTITION02;   
 ```
