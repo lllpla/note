@@ -87,6 +87,18 @@ public static void main(String[] args) {        
      for (Field field : fields) {
          field.setAccessible(true);
          // 获取需要注入字段的class
-         Class<?> fieldClass = field.getType();            String fieldBeanName = fieldClass.getSimpleName().toLowerCase();            // 如果需要注入的bean，已经在缓存Map中，那么把缓存Map中的值注入到该field即可            // 如果缓存没有 继续创建            field.set(object, cacheMap.containsKey(fieldBeanName)                    ? cacheMap.get(fieldBeanName) : getBean(fieldClass));        }        // 属性填充完成，返回        return (T) object;    }
+         Class<?> fieldClass = field.getType();
+         String fieldBeanName = fieldClass.getSimpleName().toLowerCase();
+         // 如果需要注入的bean，已经在缓存Map中，那么把缓存Map中的值注入到该field即可
+         // 如果缓存没有 继续创建
+         field.set(object, 
+                   cacheMap.containsKey(fieldBeanName)
+                   ? cacheMap.get(fieldBeanName) : getBean(fieldClass));
+     }        
+     // 属性填充完成，返回        
+     return (T) object;    
+ }
 
 ```
+
+这段代码的效果，其实就是处理了循环依赖，并且处理完成后，cacheMap中放的就是完整的“**Bean**”了
