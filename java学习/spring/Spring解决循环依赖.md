@@ -1,11 +1,13 @@
 # Spring解决循环依赖
-# 前言
+## 前言
+
 通常来说，如果问Spring内部如何解决循环依赖，一定是单默认的单例Bean中，属性互相引用的场景。
 比如几个Bean之间的互相引用：
 ![title](https://raw.githubusercontent.com/lllpla/img/master/gitnote/2020/04/14/1586873862987-1586873863298.png)
 甚至自己“循环”依赖自己：
 ![title](https://raw.githubusercontent.com/lllpla/img/master/gitnote/2020/04/14/1586874076407-1586874076413.png)
 先说明前提：**原型(Prototype)的场景是不支持循环依赖的**，通常会走到`AbstractBeanFactory`类中下面的判断，抛出异常。
+
 ```java
 if (isPrototypeCurrentlyInCreation(beanName)) {
   throw new BeanCurrentlyInCreationException(beanName);
@@ -16,22 +18,8 @@ if (isPrototypeCurrentlyInCreation(beanName)) {
 Spring怕你不好猜，就先抛出了`BeanCurrentlyInCreationException`
 基于构造器的循环依赖，就更不用说了，官方文档说了了，你想让构造器注入支持循环依赖，是不存在的，不如把代码改了。
 
-## Spring如何解决循环依赖
-首先，**Spring内部维护了三个Map，也就是我们通常说的三级缓存。**
-在Spring的`DefaultSingletonBeanRegistry`类中，你会赫然发现类上方挂着这三个Map：
+## 我们如何解决循环依赖
 
-- **singletonObjects** 它是我们最熟悉的朋友，俗称“**单例池**” “**容器**”，缓存创建完成单例Bean的地方。
-- **singletonFactories** 映射创建Bean的原始工厂
-- **earlySingletonObjects** 映射Bean的**早期引用**，也就是说在这个Map里的Bean不是完整的，甚至还不能称之为“Bean”，只是一个Instance.
-
-后两个Map其实是“垫脚石”级别的，只是创建Bean的时候，用来借助了一下，创建完成就清掉了。
-
-所以笔者前文对“三级缓存”这个词有些迷惑，可能是因为注释都是以Cache of开头吧。
-
->为什么成为后两个Map为垫脚石，假设最终放在singletonObjects的Bean是你想要的一杯“凉白开”。
->
->那么Spring准备了两个杯子，即singletonFactories和earlySingletonObjects来回“倒腾”几番，把热水晾成“凉白开”放到singletonObjects中。
-## 循环依赖的本质
 假设让你实现一个有以下特点的功能，你会怎么做？
 
 - 将指定的一些类实例为单例
@@ -104,3 +92,26 @@ public static void main(String[] args) {        
 这段代码的效果，其实就是处理了循环依赖，并且处理完成后，cacheMap中放的就是完整的“**Bean**”了。
 
 这就是“**循环依赖**”的本质，而不是“Spring如何解决循环依赖”。之所以要举这个例子，就是先写出基础版本，然后再逆推Spring为什么要这么实现。
+
+## Spring如何解决循环依赖
+
+首先，**Spring内部维护了三个Map，也就是我们通常说的三级缓存。**
+在Spring的`DefaultSingletonBeanRegistry`类中，你会赫然发现类上方挂着这三个Map：
+
+- **singletonObjects** 它是我们最熟悉的朋友，俗称“**单例池**” “**容器**”，缓存创建完成单例Bean的地方。
+- **singletonFactories** 映射创建Bean的原始工厂
+- **earlySingletonObjects** 映射Bean的**早期引用**，也就是说在这个Map里的Bean不是完整的，甚至还不能称之为“Bean”，只是一个Instance.
+
+后两个Map其实是“垫脚石”级别的，只是创建Bean的时候，用来借助了一下，创建完成就清掉了。
+
+所以笔者前文对“三级缓存”这个词有些迷惑，可能是因为注释都是以Cache of开头吧。
+
+>为什么成为后两个Map为垫脚石，假设最终放在singletonObjects的Bean是你想要的一杯“凉白开”。
+>
+>那么Spring准备了两个杯子，即singletonFactories和earlySingletonObjects来回“倒腾”几番，把热水晾成“凉白开”放到singletonObjects中。
+
+Spring的解决方式主要是以下两点：
+
+1. 利用缓存识别已经遍历过的节点； 
+
+2. 利用Java引用，先提前设置对象地址，后完善bean；
