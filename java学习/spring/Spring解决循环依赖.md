@@ -12,4 +12,5 @@ if (isPrototypeCurrentlyInCreation(beanName)) {
 }
 ```
 原因很好理解，创建新的A时，发现要注入原型字段B，又创建新的B发现要注入原型字段A...
-
+这就套娃了, 你猜是先`StackOverflow`还是`OutOfMemory？`
+Spring怕你不好猜，就先抛出了`BeanCurrentlyInCreationException`
