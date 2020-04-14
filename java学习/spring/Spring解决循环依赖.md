@@ -32,6 +32,11 @@ Spring怕你不好猜，就先抛出了`BeanCurrentlyInCreationException`
 >
 >那么Spring准备了两个杯子，即singletonFactories和earlySingletonObjects来回“倒腾”几番，把热水晾成“凉白开”放到singletonObjects中。
 ## 循环依赖的本质
+假设让你实现一个有以下特点的功能，你会怎么做？
 
+- 将指定的一些类实例为单例
+- 类中的字段也都实例为单例
+- 支持循环依赖
 
+举个例子，假设有类A：
 
