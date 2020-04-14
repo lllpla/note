@@ -25,7 +25,9 @@ Spring怕你不好猜，就先抛出了`BeanCurrentlyInCreationException`
 - **earlySingletonObjects** 映射Bean的**早期引用**，也就是说在这个Map里的Bean不是完整的，甚至还不能称之为“Bean”，只是一个Instance.
 
 后两个Map其实是“垫脚石”级别的，只是创建Bean的时候，用来借助了一下，创建完成就清掉了。
+
 所以笔者前文对“三级缓存”这个词有些迷惑，可能是因为注释都是以Cache of开头吧。
+
 为什么成为后两个Map为垫脚石，假设最终放在singletonObjects的Bean是你想要的一杯“凉白开”。
 那么Spring准备了两个杯子，即singletonFactories和earlySingletonObjects来回“倒腾”几番，把热水晾成“凉白开”放到singletonObjects中。
 闲话不说，都浓缩在图里。
