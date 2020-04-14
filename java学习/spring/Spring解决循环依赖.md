@@ -5,4 +5,11 @@
 ![title](https://raw.githubusercontent.com/lllpla/img/master/gitnote/2020/04/14/1586873862987-1586873863298.png)
 甚至自己“循环”依赖自己：
 ![title](https://raw.githubusercontent.com/lllpla/img/master/gitnote/2020/04/14/1586874076407-1586874076413.png)
-先说明前提：**原型(Prototype)的场景**是不支持循环依赖的，通常会走到AbstractBeanFactory类中下面的判断，抛出异常。
+先说明前提：**原型(Prototype)的场景是不支持循环依赖的**，通常会走到`AbstractBeanFactory`类中下面的判断，抛出异常。
+```java
+if (isPrototypeCurrentlyInCreation(beanName)) {
+  throw new BeanCurrentlyInCreationException(beanName);
+}
+```
+原因很好理解，创建新的A时，发现要注入原型字段B，又创建新的B发现要注入原型字段A...
+
