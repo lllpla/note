@@ -18,11 +18,11 @@ Spring怕你不好猜，就先抛出了`BeanCurrentlyInCreationException`
 
 ## Spring如何解决循环依赖
 首先，**Spring内部维护了三个Map，也就是我们通常说的三级缓存。**
-在Spring的`DefaultSingletonBeanRegistry类中，你会赫然发现类上方挂着这三个Map：
+在Spring的`DefaultSingletonBeanRegistry`类中，你会赫然发现类上方挂着这三个Map：
 
-singletonObjects 它是我们最熟悉的朋友，俗称“单例池”“容器”，缓存创建完成单例Bean的地方。
-singletonFactories 映射创建Bean的原始工厂
-earlySingletonObjects 映射Bean的早期引用，也就是说在这个Map里的Bean不是完整的，甚至还不能称之为“Bean”，只是一个Instance.
+- **singletonObjects** 它是我们最熟悉的朋友，俗称`“单例池”``“容器”`，缓存创建完成单例Bean的地方。
+- singletonFactories 映射创建Bean的原始工厂
+- earlySingletonObjects 映射Bean的早期引用，也就是说在这个Map里的Bean不是完整的，甚至还不能称之为“Bean”，只是一个Instance.
 
 后两个Map其实是“垫脚石”级别的，只是创建Bean的时候，用来借助了一下，创建完成就清掉了。
 所以笔者前文对“三级缓存”这个词有些迷惑，可能是因为注释都是以Cache of开头吧。
