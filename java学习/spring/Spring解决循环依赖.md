@@ -110,8 +110,6 @@ DefaultListableBeanFactory为集大成者，实现了所有接口，具备容器
 
 
 
-
-
 Spring的解决方式主要是以下两点：
 
 1. 利用缓存识别已经遍历过的节点； 
