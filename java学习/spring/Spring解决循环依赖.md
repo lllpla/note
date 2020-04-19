@@ -106,6 +106,11 @@ public static void main(String[] args) {        
 
 ![title](https://raw.githubusercontent.com/lllpla/img/master/gitnote/2020/04/19/1587303408524-1587303408848.png)
 
+DefaultListableBeanFactory为集大成者，实现了所有接口，具备容器的基本功能，所以下文中提到的bean容器都指的是DefaultListableBeanFactory。下面对BeanFactory接口的继承体系简单进行介绍。
+
+
+
+
 
 Spring的解决方式主要是以下两点：
 
