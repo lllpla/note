@@ -91,7 +91,16 @@ public static ExecutorService newFixedThreadPool(int nThreads) {
 
 （3）超出一定量的线程被提交时候需在队列中等待
 
-#### 2.3创建方式
+#### 2.3 创建方式
+
+```java
+（1）Executors.newFixedThreadPool(int nThreads)；//nThreads为线程的数量 
+（2）Executors.newFixedThreadPool(int nThreads，ThreadFactory threadFactory)；//nThreads为线程的数量，threadFactory创建线程的工厂方式
+```
+
+### 3. newSingleThreadExecutor
+
+核心线程数与最大线程数均为1，工作队列是无界队列
 
 ```java
 
