@@ -59,4 +59,13 @@ public static ExecutorService newCachedThreadPool() {
 
 #### 1.2 特征
 
-- 
+- 线程池中数量没有固定，可达到最大值（Interger. MAX_VALUE）
+- 线程池中的线程可进行缓存重复利用和回收（回收默认时间为1分钟）
+- 当线程池中，没有可用线程，会重新创建一个线程
+
+#### 1.3 创建方式
+
+`Executors.newCachedThreadPool();`
+
+### 2. newFixedThreadPool
+
