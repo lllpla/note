@@ -69,3 +69,13 @@ public static ExecutorService newCachedThreadPool() {
 
 ### 2. newFixedThreadPool
 
+核心线程数与最大线程数均为指定的nThreads，空闲线程的存活时间是0，工作队列是无界队列。
+
+```java
+public static ExecutorService newFixedThreadPool(int nThreads) {
+	return new ThreadPoolExecutor(nThreads, nThreads,
+	                                      0L, TimeUnit.MILLISECONDS,
+	                                      new LinkedBlockingQueue<Runnable>());
+}
+```
+
