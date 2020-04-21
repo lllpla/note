@@ -38,3 +38,16 @@ java线程池有**7大参数、4大特性**：
 - 特性三：当队列中任务数达到上限，并且池中正在运行的线程数小于maximumPoolSize，新加入任务时，新建线程。
 - 特性四，当队列中任务数达到上限，并且池中正在运行的线程数等于maximumPoolSize，对新加入的任务，执行拒绝策略(线程池默认拒绝策略为抛异常)
 
+## 种类
+
+### 1. newCachedThreadPool
+
+核心线程数为0，最大线程数为Integer.MAX_VALUE
+
+```java
+public static ExecutorService newCachedThreadPool() {
+	return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
+	                                      60L, TimeUnit.SECONDS,new SynchronousQueue<Runnable>());
+}
+```
+
