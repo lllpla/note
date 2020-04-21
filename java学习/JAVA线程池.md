@@ -85,17 +85,17 @@ public static ExecutorService newFixedThreadPool(int nThreads) {
 
 #### 2.2 特征
 
-（1）线程池中的线程处于一定的量，可以很好的控制线程的并发量
+- 线程池中的线程处于一定的量，可以很好的控制线程的并发量
 
-（2）线程可以重复被使用，在显示关闭之前，都将一直存在
+- 线程可以重复被使用，在显示关闭之前，都将一直存在
 
-（3）超出一定量的线程被提交时候需在队列中等待
+- 超出一定量的线程被提交时候需在队列中等待
 
 #### 2.3 创建方式
 
 ```java
-（1）Executors.newFixedThreadPool(int nThreads)；//nThreads为线程的数量 
-（2）Executors.newFixedThreadPool(int nThreads，ThreadFactory threadFactory)；//nThreads为线程的数量，threadFactory创建线程的工厂方式
+Executors.newFixedThreadPool(int nThreads)；//nThreads为线程的数量 
+Executors.newFixedThreadPool(int nThreads，ThreadFactory threadFactory)；//nThreads为线程的数量，threadFactory创建线程的工厂方式
 ```
 
 ### 3. newSingleThreadExecutor
@@ -122,8 +122,8 @@ public static ExecutorService newSingleThreadExecutor() {
 #### 3.3 创建方式
 
 ```java
-Executors.newSingleThreadExecutor() ； 
-Executors.newSingleThreadExecutor(ThreadFactory threadFactory)；// threadFactory创建线程的工厂方式
+Executors.newSingleThreadExecutor();
+Executors.newSingleThreadExecutor(ThreadFactory threadFactory);// threadFactory创建线程的工厂方式
 ```
 
 ### 4. newScheduledThreadPool
