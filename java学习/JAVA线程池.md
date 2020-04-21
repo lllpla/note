@@ -227,20 +227,18 @@ Executors.newSingleThreadScheduledExecutor(ThreadFactory threadFactory);//thread
 
 ## 拒绝策略
 
-**AbortPolicy：**处理程序遭到拒绝将抛出运行时 RejectedExecutionException
+- **AbortPolicy：**处理程序遭到拒绝将抛出运行时 RejectedExecutionException
 
-**DiscardPolicy：**不能执行的任务将被删除
+- **DiscardPolicy：**不能执行的任务将被删除
+- **DiscardOldestPolicy**：如果执行程序尚未关闭，则位于工作队列头部的任务将被删除，然后重试执行程序（如果再次失败，则重复此过程）
+- **CallerRunsPolicy**：线程调用运行该任务的 execute 本身。此策略提供简单的反馈控制机制，能够减缓新任务的提交速度。
 
-**DiscardOldestPolicy**：如果执行程序尚未关闭，则位于工作队列头部的任务将被删除，然后重试执行程序（如果再次失败，则重复此过程）
-
-**CallerRunsPolicy**：线程调用运行该任务的 execute 本身。此策略提供简单的反馈控制机制，能够减缓新任务的提交速度。
-
-```
+```java
 RejectedExecutionHandler rejected = null;
 rejected = new ThreadPoolExecutor.AbortPolicy();//默认，队列满了丢任务抛出异常
 rejected = new ThreadPoolExecutor.DiscardPolicy();//队列满了丢任务不异常
 rejected = new ThreadPoolExecutor.DiscardOldestPolicy();//将最早进入队列的任务删，之后再尝试加入队列
-rejected = new ThreadPoolExecutor.CallerRunsPolicy();//如果添加到线程池失败，那么主线程会自己去执行该任
+rejected = new ThreadPoolExecutor.CallerRunsPolicy();//如果添加到线程池失败，那么主线程会自己去执行该任务
 ```
 
 、
