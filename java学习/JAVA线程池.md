@@ -47,7 +47,9 @@ java线程池有**7大参数、4大特性**：
 ```java
 public static ExecutorService newCachedThreadPool() {
 	return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
-	                                      60L, TimeUnit.SECONDS,new SynchronousQueue<Runnable>());
+                                  60L, 
+                                  TimeUnit.SECONDS,
+                                  new SynchronousQueue<Runnable>());
 }
 ```
 
