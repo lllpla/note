@@ -122,8 +122,8 @@ public static ExecutorService newSingleThreadExecutor() {
 #### 3.3 创建方式
 
 ```java
-（1）Executors.newSingleThreadExecutor() ； 
-（2）Executors.newSingleThreadExecutor(ThreadFactory threadFactory)；// threadFactory创建线程的工厂方式
+Executors.newSingleThreadExecutor() ； 
+Executors.newSingleThreadExecutor(ThreadFactory threadFactory)；// threadFactory创建线程的工厂方式
 ```
 
 ### 4. newScheduledThreadPool
@@ -163,9 +163,9 @@ public class ScheduledThreadPoolExecutor
 
 （2）可定时或者延迟执行线程活动
 
-**4.3创建方式
+#### 4.3创建方式
 
-```
-（1）Executors.newScheduledThreadPool(int corePoolSize)；// corePoolSize线程的个数 
-（2）newScheduledThreadPool(int corePoolSize, ThreadFactory threadFactory)；// corePoolSize线程的
+```java
+Executors.newScheduledThreadPool(int corePoolSize);// corePoolSize线程的个数 
+newScheduledThreadPool(int corePoolSize, ThreadFactory threadFactory);// corePoolSize线程的
 ```
