@@ -25,9 +25,13 @@ public ThreadPoolExecutor(
     int maximumPoolSize,//线程数上限
     long keepAliveTime, //空闲线程存活时间
     TimeUnit unit, //时间单位
-    
+    BlockingQueue<Runnable> workQueue, //任务队列
+    ThreadFactory threadFactory,//新线程的产生方式
+    RejectedExecutionHandler handler //拒绝策略
 )
 ```
+
+java线程池有**7大参数、4大特性**：
 
 
 
