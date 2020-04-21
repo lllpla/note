@@ -53,3 +53,10 @@ public static ExecutorService newCachedThreadPool() {
 }
 ```
 
+#### 1.1 作用
+
+创建一个可根据需要创建新线程的线程池，但是在以前构造的线程可用时将重用它们，并在需要时使用提供的 ThreadFactory 创建新线程。
+
+#### 1.2 特征
+
+- 
