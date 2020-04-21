@@ -169,3 +169,64 @@ public class ScheduledThreadPoolExecutor
 Executors.newScheduledThreadPool(int corePoolSize);// corePoolSize线程的个数 
 newScheduledThreadPool(int corePoolSize, ThreadFactory threadFactory);// corePoolSize线程的
 ```
+
+### 5. newSingleThreadScheduledExecutor
+
+#### 5.1 作用
+
+创建一个单线程执行程序，它可安排在给定延迟后运行命令或者定期地执行。
+
+#### 5.2 特征
+
+- 线程池中最多执行1个线程，之后提交的线程活动将会排在队列中以此执行
+
+- 可定时或者延迟执行线程活动
+
+#### 5.3 创建方式
+
+```java
+Executors.newSingleThreadScheduledExecutor();
+Executors.newSingleThreadScheduledExecutor(ThreadFactory threadFactory);//threadFactory创建线程
+```
+
+### 工作队列
+
+### SynchronousQueue：直接提交
+
+是工作队列的默认选项，将任务直接提交给线程而不保持。
+
+如果不存在可用于立即运行任务的线程，则试图把任务加入队列将失败，因此会构造一个新的线程。
+
+**优缺点**
+
+优点：可以避免在处理可能具有内部依赖性的请求集时出现锁。
+
+直接提交通常要求无界maximumPoolSizes 以避免拒绝新提交的任务。
+
+当命令以超过队列所能处理的平均数连续到达时，此策略允许无界线程具有增长的可能性。
+
+### ArrayBlockingQueue：无界队列
+
+在所有核心线程都忙时，新任务在队列中等待。
+
+因此，仅创建corePoolSize线程即可。（maximumPoolSize的值没有任何作用。）
+
+当每个任务完全独立于其他任务时，因此任务不会影响彼此的执行。
+
+**优缺点**
+
+优点：例如，在网页服务器中，尽管这种排队方式对于消除短暂的突发请求很有用。
+
+缺点：当命令请求到达速度比其处理速度更快时，工作队列无限制增长。
+
+### LinkedBlockingQueue：有界队列
+
+当与有限的maximumPoolSizes一起使用时，有界队列有助于防止资源耗尽，但是调整和控制起来会更加困难。
+
+队列大小和最大池大小可以相互权衡
+
+使用大队列和小池可以最大程度地减少CPU使用率，操作系统资源和上下文切换开销，但可能导致人为地降低吞吐量。
+
+如果任务频繁阻塞（例如如果它们是受I/O约束的），则系统可能可以为非预定的更多线程安排时间。
+
+使用小队列通常需要更大的池大小，这会使CPU繁忙，但可能会遇到不可接受的调度开销，这也会降低吞吐量。
