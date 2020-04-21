@@ -157,13 +157,13 @@ public class ScheduledThreadPoolExecutor
 
 创建一个线程池，它可安排在给定延迟后运行命令或者定期地执行。
 
-#### 4.2特征
+#### 4.2 特征
 
 （1）线程池中具有指定数量的线程，即便是空线程也将保留
 
 （2）可定时或者延迟执行线程活动
 
-#### 4.3创建方式
+#### 4.3 创建方式
 
 ```java
 Executors.newScheduledThreadPool(int corePoolSize);// corePoolSize线程的个数 
