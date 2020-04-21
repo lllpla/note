@@ -21,7 +21,11 @@ Executors.newCachedThreadPool();//创建一个不限线程数上限的线程池�
 
 ```java
 public ThreadPoolExecutor(
-    int corePoolSize, //线程池长期wei'z
+    int corePoolSize, //线程池长期维持的线程数
+    int maximumPoolSize,//线程数上限
+    long keepAliveTime, //空闲线程存活时间
+    TimeUnit unit, //时间单位
+    
 )
 ```
 
