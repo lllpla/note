@@ -125,3 +125,47 @@ public static ExecutorService newSingleThreadExecutor() {
 （1）Executors.newSingleThreadExecutor() ； 
 （2）Executors.newSingleThreadExecutor(ThreadFactory threadFactory)；// threadFactory创建线程的工厂方式
 ```
+
+### 4. newScheduledThreadPool
+
+指定核心线程数corePoolSize、最大线程数是Integer.MAX_VALUE
+
+DelayedWorkQueue：任务队列会根据任务延时时间的优先级进行执行
+
+```java
+public class ScheduledThreadPoolExecutor
+        extends ThreadPoolExecutor
+        implements ScheduledExecutorService {
+	....................
+	/**
+     * Creates a new {@code ScheduledThreadPoolExecutor} with the
+     * given core pool size.
+     *
+     * @param corePoolSize the number of threads to keep in the pool, even
+     *        if they are idle, unless {@code allowCoreThreadTimeOut} is set
+     * @throws IllegalArgumentException if {@code corePoolSize < 0}
+     */
+	public ScheduledThreadPoolExecutor(int corePoolSize) {
+		super(corePoolSize, Integer.MAX_VALUE, 0, NANOSECONDS,
+		              new DelayedWorkQueue());
+	}
+```
+
+
+
+#### 4.1 作用
+
+创建一个线程池，它可安排在给定延迟后运行命令或者定期地执行。
+
+#### 4.2特征
+
+（1）线程池中具有指定数量的线程，即便是空线程也将保留
+
+（2）可定时或者延迟执行线程活动
+
+**4.3创建方式
+
+```
+（1）Executors.newScheduledThreadPool(int corePoolSize)；// corePoolSize线程的个数 
+（2）newScheduledThreadPool(int corePoolSize, ThreadFactory threadFactory)；// corePoolSize线程的
+```
