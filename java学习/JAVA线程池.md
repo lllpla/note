@@ -103,6 +103,11 @@ public static ExecutorService newFixedThreadPool(int nThreads) {
 核心线程数与最大线程数均为1，工作队列是无界队列
 
 ```java
-
+public static ExecutorService newSingleThreadExecutor() {
+	return new FinalizableDelegatedExecutorService
+	            (new ThreadPoolExecutor(1, 1,
+	                                    0L, TimeUnit.MILLISECONDS,
+	                                    new LinkedBlockingQueue<Runnable>()));
+}
 ```
 
