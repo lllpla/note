@@ -33,5 +33,8 @@ public ThreadPoolExecutor(
 
 java线程池有**7大参数、4大特性**：
 
-
+- 特性一：当池中正在运行的线程数(包括空闲线程)小于corePoolSize时，新建线程执行任务。
+- 特性二：当池中正在运行的线程数大于等于corePoolSize时，新插入的任务进入workQueue排队(如果workQueue长度允许)，等待空闲线程执行。
+- 特性三：当队列中任务数打到上限，并且池中正在运行的线程数小于maximumPoolSize，对于新加入的任务，新建线程。
+- 特性四，当队列中
 
