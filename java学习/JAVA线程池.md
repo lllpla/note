@@ -189,9 +189,9 @@ Executors.newSingleThreadScheduledExecutor();
 Executors.newSingleThreadScheduledExecutor(ThreadFactory threadFactory);//threadFactory创建线程
 ```
 
-### 工作队列
+## 工作队列
 
-#### SynchronousQueue：直接提交
+### SynchronousQueue：直接提交
 
 是工作队列的默认选项，将任务直接提交给线程而不保持。如果不存在可用于立即运行任务的线程，则试图把任务加入队列将失败，因此会构造一个新的线程。
 
@@ -202,7 +202,7 @@ Executors.newSingleThreadScheduledExecutor(ThreadFactory threadFactory);//thread
   - 直接提交通常要求无界maximumPoolSizes 以避免拒绝新提交的任务。
   - 当命令以超过队列所能处理的平均数连续到达时，此策略允许无界线程具有增长的可能性。
 
-#### ArrayBlockingQueue：无界队列
+### ArrayBlockingQueue：无界队列
 
 在所有核心线程都忙时，新任务在队列中等待。因此，仅创建corePoolSize线程即可。（maximumPoolSize的值没有任何作用。）当每个任务完全独立于其他任务时，因此任务不会影响彼此的执行。
 
@@ -213,7 +213,7 @@ Executors.newSingleThreadScheduledExecutor(ThreadFactory threadFactory);//thread
 - 缺点：
   - 当命令请求到达速度比其处理速度更快时，工作队列无限制增长。
 
-#### LinkedBlockingQueue：有界队列
+### LinkedBlockingQueue：有界队列
 
 当与有限的maximumPoolSizes一起使用时，有界队列有助于防止资源耗尽，但是调整和控制起来会更加困难。
 
@@ -226,3 +226,21 @@ Executors.newSingleThreadScheduledExecutor(ThreadFactory threadFactory);//thread
 使用小队列通常需要更大的池大小，这会使CPU繁忙，但可能会遇到不可接受的调度开销，这也会降低吞吐量。
 
 ## 拒绝策略
+
+**AbortPolicy：**处理程序遭到拒绝将抛出运行时 RejectedExecutionException
+
+**DiscardPolicy：**不能执行的任务将被删除
+
+**DiscardOldestPolicy**：如果执行程序尚未关闭，则位于工作队列头部的任务将被删除，然后重试执行程序（如果再次失败，则重复此过程）
+
+**CallerRunsPolicy**：线程调用运行该任务的 execute 本身。此策略提供简单的反馈控制机制，能够减缓新任务的提交速度。
+
+```
+RejectedExecutionHandler rejected = null;
+rejected = new ThreadPoolExecutor.AbortPolicy();//默认，队列满了丢任务抛出异常
+rejected = new ThreadPoolExecutor.DiscardPolicy();//队列满了丢任务不异常
+rejected = new ThreadPoolExecutor.DiscardOldestPolicy();//将最早进入队列的任务删，之后再尝试加入队列
+rejected = new ThreadPoolExecutor.CallerRunsPolicy();//如果添加到线程池失败，那么主线程会自己去执行该任
+```
+
+、
