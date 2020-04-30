@@ -85,17 +85,17 @@ public static ExecutorService newFixedThreadPool(int nThreads) {
 
 #### 2.2 特征
 
-- 线程池中的线程处于一定的量，可以很好的控制线程的并发量
+（1）线程池中的线程处于一定的量，可以很好的控制线程的并发量
 
-- 线程可以重复被使用，在显示关闭之前，都将一直存在
+（2）线程可以重复被使用，在显示关闭之前，都将一直存在
 
-- 超出一定量的线程被提交时候需在队列中等待
+（3）超出一定量的线程被提交时候需在队列中等待
 
 #### 2.3 创建方式
 
 ```java
-Executors.newFixedThreadPool(int nThreads)；//nThreads为线程的数量 
-Executors.newFixedThreadPool(int nThreads，ThreadFactory threadFactory)；//nThreads为线程的数量，threadFactory创建线程的工厂方式
+（1）Executors.newFixedThreadPool(int nThreads)；//nThreads为线程的数量 
+（2）Executors.newFixedThreadPool(int nThreads，ThreadFactory threadFactory)；//nThreads为线程的数量，threadFactory创建线程的工厂方式
 ```
 
 ### 3. newSingleThreadExecutor
@@ -122,8 +122,8 @@ public static ExecutorService newSingleThreadExecutor() {
 #### 3.3 创建方式
 
 ```java
-Executors.newSingleThreadExecutor();
-Executors.newSingleThreadExecutor(ThreadFactory threadFactory);// threadFactory创建线程的工厂方式
+Executors.newSingleThreadExecutor() ； 
+Executors.newSingleThreadExecutor(ThreadFactory threadFactory)；// threadFactory创建线程的工厂方式
 ```
 
 ### 4. newScheduledThreadPool
@@ -227,9 +227,9 @@ Executors.newSingleThreadScheduledExecutor(ThreadFactory threadFactory);//thread
 
 ## 拒绝策略
 
-- **AbortPolicy：**处理程序遭到拒绝将抛出运行时 RejectedExecutionException
+- **AbortPolicy**：处理程序遭到拒绝将抛出运行时 RejectedExecutionException
 
-- **DiscardPolicy：**不能执行的任务将被删除
+- **DiscardPolicy**：不能执行的任务将被删除
 - **DiscardOldestPolicy**：如果执行程序尚未关闭，则位于工作队列头部的任务将被删除，然后重试执行程序（如果再次失败，则重复此过程）
 - **CallerRunsPolicy**：线程调用运行该任务的 execute 本身。此策略提供简单的反馈控制机制，能够减缓新任务的提交速度。
 
