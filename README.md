@@ -12,6 +12,8 @@
  10. [后端工程师技术图谱](https://github.com/lllpla/note/blob/master/java%E5%AD%A6%E4%B9%A0/%E5%90%8E%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%8A%80%E6%9C%AF%E5%9B%BE%E8%B0%B1.md)
  11. [多线程学习](https://github.com/lllpla/note/blob/master/java%E5%AD%A6%E4%B9%A0/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0.md)
  12. [红黑树](https://github.com/lllpla/note/blob/master/java%E5%AD%A6%E4%B9%A0/%E7%BA%A2%E9%BB%91%E6%A0%91.md)
- 13. 
+ 13. 虚拟机
+ 	 1.[java 内存管理](https://github.com/lllpla/note/blob/master/java%E5%AD%A6%E4%B9%A0/%E8%99%9A%E6%8B%9F%E6%9C%BA/java%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.md)
+	2.
 ## 工具使用
 ## 数据库
