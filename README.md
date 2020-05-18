@@ -27,4 +27,7 @@
 	7. [彻底透析SpringBoot jar可执行原理](https://github.com/lllpla/note/blob/master/java%E5%AD%A6%E4%B9%A0/spring/%E5%BD%BB%E5%BA%95%E9%80%8F%E6%9E%90SpringBoot%20jar%E5%8F%AF%E6%89%A7%E8%A1%8C%E5%8E%9F%E7%90%86.md)
 
 ## 工具使用
+[nginx](https://github.com/lllpla/note/blob/master/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/nginx.md)
 ## 数据库
+[InnoDB学习笔记](https://github.com/lllpla/note/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/InnoDB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md)
+[https://github.com/lllpla/note/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E7%B4%A2%E5%BC%95%E8%83%8C%E5%90%8E%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86.md]
