@@ -6,22 +6,27 @@
 
 SpringBoot 的可执行jar包又称fat jar ，是**包含所有第三方依赖的 jar 包**，jar 包中嵌入了除 java 虚拟机以外的所有依赖，是一个 all-in-one jar 包。普通插件maven-jar-plugin生成的包和spring-boot-maven-plugin生成的包之间的直接区别，是fat jar中主要增加了两部分，第一部分是**lib目录**，存放的是Maven依赖的jar包文件,第二部分是spring boot loader相关的类。 
 
-> fat jar 目录结构 
-> ├─BOOT-INF 
-> │ ├─classes 
-> │ └─lib 
-> ├─META-INF 
-> │ ├─maven 
-> │ ├─app.properties 
-> │ ├─MANIFEST.MF    
-> └─org 
->   └─springframework 
->     └─boot 
->       └─loader 
->         ├─archive 
->         ├─data 
->         ├─jar 
->         └─util 
+```shell
+fat jar 目录结构 
+
+├─BOOT-INF 
+│ ├─classes 
+│ └─lib 
+├─META-INF 
+│ ├─maven 
+│ ├─app.properties 
+│ ├─MANIFEST.MF    
+└─org 
+└─springframework 
+ └─boot 
+   └─loader 
+     ├─archive 
+     ├─data 
+     ├─jar 
+     └─util 
+```
+
+
 
 也就是说想要知道fat jar是如何生成的，就必须知道spring-boot-maven-plugin工作机制，而spring-boot-maven-plugin属于自定义插件，因此我们又必须知道，**Maven的自定义插件是如何工作的** 
 
