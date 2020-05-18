@@ -14,9 +14,9 @@
  12. [红黑树](https://github.com/lllpla/note/blob/master/java%E5%AD%A6%E4%B9%A0/%E7%BA%A2%E9%BB%91%E6%A0%91.md)
  13. 虚拟机
  	 1. [java 内存管理](https://github.com/lllpla/note/blob/master/java%E5%AD%A6%E4%B9%A0/%E8%99%9A%E6%8B%9F%E6%9C%BA/java%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.md)
-	2. [垃圾回收](https://github.com/lllpla/note/blob/master/java%E5%AD%A6%E4%B9%A0/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.md)
-	3. [多线程中的volatile和伪共享](https://github.com/lllpla/note/blob/master/java%E5%AD%A6%E4%B9%A0/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%AD%E7%9A%84volatile%E5%92%8C%E4%BC%AA%E5%85%B1%E4%BA%AB%20.md)
-	4. [缓存更新](https://github.com/lllpla/note/blob/master/java%E5%AD%A6%E4%B9%A0/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E7%BC%93%E5%AD%98%E6%9B%B4%E6%96%B0.md)
+	 2. [垃圾回收](https://github.com/lllpla/note/blob/master/java%E5%AD%A6%E4%B9%A0/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.md)
+	 3. [多线程中的volatile和伪共享](https://github.com/lllpla/note/blob/master/java%E5%AD%A6%E4%B9%A0/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%AD%E7%9A%84volatile%E5%92%8C%E4%BC%AA%E5%85%B1%E4%BA%AB%20.md)
+	 4. [缓存更新](https://github.com/lllpla/note/blob/master/java%E5%AD%A6%E4%B9%A0/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E7%BC%93%E5%AD%98%E6%9B%B4%E6%96%B0.md)
 14. spring
 	1. [SpringBoot基于数据库实现简单的分布式锁](https://github.com/lllpla/note/blob/master/java%E5%AD%A6%E4%B9%A0/spring/SpringBoot%E5%9F%BA%E4%BA%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%20.md) 
 	2. [SpringCloud学习](https://github.com/lllpla/note/blob/master/java%E5%AD%A6%E4%B9%A0/spring/SpringCloud%E5%AD%A6%E4%B9%A0.md)
