@@ -18,12 +18,13 @@
 	3. [多线程中的volatile和伪共享](https://github.com/lllpla/note/blob/master/java%E5%AD%A6%E4%B9%A0/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%AD%E7%9A%84volatile%E5%92%8C%E4%BC%AA%E5%85%B1%E4%BA%AB%20.md)
 	4. [缓存更新](https://github.com/lllpla/note/blob/master/java%E5%AD%A6%E4%B9%A0/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E7%BC%93%E5%AD%98%E6%9B%B4%E6%96%B0.md)
 14. spring
-	1. [SpringBoot基于数据库实现简单的分布式锁]() 
-	2. [SpringCloud学习]()
-	3. [Spring的事务传播机制
-]()
-	4. []()
-	5. []()
+	1. [SpringBoot基于数据库实现简单的分布式锁](https://github.com/lllpla/note/blob/master/java%E5%AD%A6%E4%B9%A0/spring/SpringBoot%E5%9F%BA%E4%BA%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%20.md) 
+	2. [SpringCloud学习](https://github.com/lllpla/note/blob/master/java%E5%AD%A6%E4%B9%A0/spring/SpringCloud%E5%AD%A6%E4%B9%A0.md)
+	3. [Spring的事务传播机制](https://github.com/lllpla/note/blob/master/java%E5%AD%A6%E4%B9%A0/spring/Spring%E7%9A%84%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6.md)
+	4. [Spring解决循环依赖](https://github.com/lllpla/note/blob/master/java%E5%AD%A6%E4%B9%A0/spring/Spring%E8%A7%A3%E5%86%B3%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96.md)
+	5. [guava实现springboot上的AOP]()
+	6. [springboot + profile不同环境读取不同配置]()
+	7. [彻底透析SpringBoot jar可执行原理]()
 
 ## 工具使用
 ## 数据库
