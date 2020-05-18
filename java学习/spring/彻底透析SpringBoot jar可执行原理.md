@@ -18,8 +18,8 @@ fat jar 目录结构
 │ ├─MANIFEST.MF    
 └─org 
 └─springframework 
- └─boot 
-   └─loader 
+  └─boot 
+    └─loader 
      ├─archive 
      ├─data 
      ├─jar 
