@@ -10,6 +10,21 @@ Feign通过将注解处理为模板化请求来工作。参数在输出之前直
 
 Feign10.x及以上版本是在java8上构建的。对于需要使用jdk6的用户请使用Feign9.x
 
-# 二、处理过程图
+## 二、处理过程图
 
 ![title](https://raw.githubusercontent.com/lllpla/img/master/gitnote/2020/06/21/1592704630569-1592704630642.png)
+
+## 三、HTTP CLIENT依赖
+
+feign 在默认情况下使用 JDK 原生的 URLConnection 发送HTTP请求。(没有连接池，保持长连接) 。
+
+可以通过修改 client 依赖换用底层的 client，不同的 http client 对请求的支持可能有差异。具体使用示例如下:
+
+```
+feign: 
+  httpclient:
+    enable: false
+  okhttp:
+    enable: true
+```
+
