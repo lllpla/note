@@ -12,3 +12,4 @@ Feign10.x及以上版本是在java8上构建的。对于需要使用jdk6的用�
 
 # 二、处理过程图
 
+![title](https://raw.githubusercontent.com/lllpla/img/master/gitnote/2020/06/21/1592704630569-1592704630642.png)
