@@ -25,6 +25,7 @@
 	5. [guava实现springboot上的AOP](https://github.com/lllpla/note/blob/master/java%E5%AD%A6%E4%B9%A0/spring/guava%E5%AE%9E%E7%8E%B0springboot%E4%B8%8A%E7%9A%84AOP.md)
 	6. [springboot + profile不同环境读取不同配置](https://github.com/lllpla/note/blob/master/java%E5%AD%A6%E4%B9%A0/spring/springboot%20%2B%20profile%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E8%AF%BB%E5%8F%96%E4%B8%8D%E5%90%8C%E9%85%8D%E7%BD%AE.md)
 	7. [彻底透析SpringBoot jar可执行原理](https://github.com/lllpla/note/blob/master/java%E5%AD%A6%E4%B9%A0/spring/%E5%BD%BB%E5%BA%95%E9%80%8F%E6%9E%90SpringBoot%20jar%E5%8F%AF%E6%89%A7%E8%A1%8C%E5%8E%9F%E7%90%86.md)
+	8. [Fegin Client 原理和使用](https://github.com/lllpla/note/blob/master/java%E5%AD%A6%E4%B9%A0/spring/Fegin%20Client%20%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8.md)
 
 ## 工具使用
 [nginx](https://github.com/lllpla/note/blob/master/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/nginx.md)
