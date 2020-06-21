@@ -385,3 +385,16 @@ public @interface FeignClient {
 ```
 
 * 开启支持-使用 `EnableFeignClients` 注解
+
+```java
+@SpringBootApplication
+@EnableFeignClients
+public class TyaleApplication {
+
+ public static void main(String[] args) {
+  SpringApplication.run(TyaleApplication.class, args);
+ }
+
+}
+```
+
