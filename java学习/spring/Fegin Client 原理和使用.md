@@ -419,3 +419,21 @@ public interface TyaleFeignClient {
     PaymentDTO payment(@RequestHeader("Accept-Language") String acceptLanguage,
                        @RequestBody PaymentRQ paymentRq);
 ```
+
+* FormEncoder 支持
+
+```java
+@Configuration
+public class FeignFormConfiguration {
+
+    @Autowired
+    private ObjectFactory<HttpMessageConverters> messageConverters;
+
+    @Bean
+    @Primary
+    public Encoder feignFormEncoder() {
+        return new FormEncoder(new SpringEncoder(this.messageConverters));
+    }
+}
+```
+
