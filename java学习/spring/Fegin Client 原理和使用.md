@@ -453,6 +453,61 @@ public class FeignInterceptor implements RequestInterceptor {
 * ErrorCode-可以自定义错误响应码的处理
 
 ```java
+@Configuration
+public class TyaleErrorDecoder implements ErrorDecoder {
 
+    @Override
+    public Exception decode(String methodKey, Response response) {
+        TyaleErrorException errorException = null;
+        try {
+            if (response.body() != null) {
+               Charset utf8 = StandardCharsets.UTF_8;
+                var body = Util.toString(response.body().asReader(utf8));
+                errorException = GsonUtils.fromJson(body, TyaleErrorException.class);
+            } else {
+                errorException = new TyaleErrorException();
+            }
+        } catch (IOException ignored) {
+
+        }
+        return errorException;
+    }
+}
 ```
 
+* TyaleErrorException 类示例-处理返回失败响应码时的数据，不同的服务端可能需要不同的处理
+
+```java
+@EqualsAndHashCode(callSuper = true)
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class TyaleErrorException extends Exception {
+
+    /**
+     * example: "./api/{service-name}/{problem-id}"
+     */
+    private String type;
+
+    /**
+     * example: {title}
+     */
+    private String title;
+
+    /**
+     * example: https://api/docs/index.html#error-handling
+     */
+    private String documentation;
+
+    /**
+     * example: {code}
+     */
+    private String status;
+}
+```
+
+* FeignClient 使用示例
+
+```java
+
+```
