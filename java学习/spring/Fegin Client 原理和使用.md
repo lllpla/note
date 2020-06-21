@@ -20,7 +20,7 @@ feign 在默认情况下使用 JDK 原生的 URLConnection 发送HTTP请求。(�
 
 可以通过修改 client 依赖换用底层的 client，不同的 http client 对请求的支持可能有差异。具体使用示例如下:
 
-```
+```yaml
 feign: 
   httpclient:
     enable: false
@@ -28,3 +28,22 @@ feign:
     enable: true
 ```
 
+和
+
+```xml
+<!-- Support PATCH Method-->
+<dependency>    
+  <groupId>org.apache.httpcomponents</groupId>    
+  <artifactId>httpclient</artifactId> 
+</dependency>
+      
+<!-- Do not support PATCH Method -->
+<dependency>
+    <groupId>io.github.openfeign</groupId>
+    <artifactId>feign-okhttp</artifactId>
+</dependency>
+```
+
+## 四、Http Client 配置
+
+- okhttp 配置源码
