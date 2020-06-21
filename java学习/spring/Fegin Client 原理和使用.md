@@ -173,5 +173,155 @@ public class HttpClientFeignConfiguration {
 - HttpClient 配置属性
 
 ```java
+@ConfigurationProperties(prefix = "feign.httpclient")
+public class FeignHttpClientProperties {
 
+ /**
+  * Default value for disabling SSL validation.
+  */
+ public static final boolean DEFAULT_DISABLE_SSL_VALIDATION = false;
+
+ /**
+  * Default value for max number od connections.
+  */
+ public static final int DEFAULT_MAX_CONNECTIONS = 200;
+
+ /**
+  * Default value for max number od connections per route.
+  */
+ public static final int DEFAULT_MAX_CONNECTIONS_PER_ROUTE = 50;
+
+ /**
+  * Default value for time to live.
+  */
+ public static final long DEFAULT_TIME_TO_LIVE = 900L;
+
+ /**
+  * Default time to live unit.
+  */
+ public static final TimeUnit DEFAULT_TIME_TO_LIVE_UNIT = TimeUnit.SECONDS;
+
+ /**
+  * Default value for following redirects.
+  */
+ public static final boolean DEFAULT_FOLLOW_REDIRECTS = true;
+
+ /**
+  * Default value for connection timeout.
+  */
+ public static final int DEFAULT_CONNECTION_TIMEOUT = 2000;
+
+ /**
+  * Default value for connection timer repeat.
+  */
+ public static final int DEFAULT_CONNECTION_TIMER_REPEAT = 3000;
+
+ private boolean disableSslValidation = DEFAULT_DISABLE_SSL_VALIDATION;
+
+ private int maxConnections = DEFAULT_MAX_CONNECTIONS;
+
+ private int maxConnectionsPerRoute = DEFAULT_MAX_CONNECTIONS_PER_ROUTE;
+
+ private long timeToLive = DEFAULT_TIME_TO_LIVE;
+
+ private TimeUnit timeToLiveUnit = DEFAULT_TIME_TO_LIVE_UNIT;
+
+ private boolean followRedirects = DEFAULT_FOLLOW_REDIRECTS;
+
+ private int connectionTimeout = DEFAULT_CONNECTION_TIMEOUT;
+
+ private int connectionTimerRepeat = DEFAULT_CONNECTION_TIMER_REPEAT;
+
+ //省略 setter 和 getter 方法
+}
+```
+
+## 五、部分注解
+
+- FeignClient 注解源码
+
+```java
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface FeignClient {
+
+  // 忽略了过时的属性
+  
+ /**
+  * The name of the service with optional protocol prefix. Synonym for {@link #name()
+  * name}. A name must be specified for all clients, whether or not a url is provided.
+  * Can be specified as property key, eg: ${propertyKey}.
+  * @return the name of the service with optional protocol prefix
+  */
+ @AliasFor("name")
+ String value() default "";
+
+ /**
+  * This will be used as the bean name instead of name if present, but will not be used
+  * as a service id.
+  * @return bean name instead of name if present
+  */
+ String contextId() default "";
+
+ /**
+  * @return The service id with optional protocol prefix. Synonym for {@link #value()
+  * value}.
+  */
+ @AliasFor("value")
+ String name() default "";
+
+ /**
+  * @return the <code>@Qualifier</code> value for the feign client.
+  */
+ String qualifier() default "";
+
+ /**
+  * @return an absolute URL or resolvable hostname (the protocol is optional).
+  */
+ String url() default "";
+
+ /**
+  * @return whether 404s should be decoded instead of throwing FeignExceptions
+  */
+ boolean decode404() default false;
+
+ /**
+  * A custom configuration class for the feign client. Can contain override
+  * <code>@Bean</code> definition for the pieces that make up the client, for instance
+  * {@link feign.codec.Decoder}, {@link feign.codec.Encoder}, {@link feign.Contract}.
+  *
+  * @see FeignClientsConfiguration for the defaults
+  * @return list of configurations for feign client
+  */
+ Class<?>[] configuration() default {};
+
+ /**
+  * Fallback class for the specified Feign client interface. The fallback class must
+  * implement the interface annotated by this annotation and be a valid spring bean.
+  * @return fallback class for the specified Feign client interface
+  */
+ Class<?> fallback() default void.class;
+
+ /**
+  * Define a fallback factory for the specified Feign client interface. The fallback
+  * factory must produce instances of fallback classes that implement the interface
+  * annotated by {@link FeignClient}. The fallback factory must be a valid spring bean.
+  *
+  * @see feign.hystrix.FallbackFactory for details.
+  * @return fallback factory for the specified Feign client interface
+  */
+ Class<?> fallbackFactory() default void.class;
+
+ /**
+  * @return path prefix to be used by all method-level mappings. Can be used with or
+  * without <code>@RibbonClient</code>.
+  */
+ String path() default "";
+
+ /**
+  * @return whether to mark the feign proxy as a primary bean. Defaults to true.
+  */
+ boolean primary() default true;
+}
 ```
