@@ -398,3 +398,24 @@ public class TyaleApplication {
 }
 ```
 
+* 接口注解-标记请求地址、请求header、请求方式、参数(是否必填)等
+
+```java
+//如果是微服务内部调用则 value 可以直接指定对方服务在服务发现中的服务名，不需要 url
+@FeignClient(value = "tyale", url = "${base.uri}")
+public interface TyaleFeignClient {
+
+    @PostMapping(value = "/token", consumes ="application/x-www-form-urlencoded")
+    Map<String, Object> obtainToken(Map<String, ?> queryParam);
+  
+    @GetMapping(value = Constants.STATION_URI)
+    StationPage stations(@RequestHeader("Accept-Language") String acceptLanguage,
+                         @RequestParam(name = "country") String country,
+                         @RequestParam(name = "order") String order,
+                         @RequestParam(name = "page", required = false) Integer page,
+                         @RequestParam(name = "pageSize") Integer pageSize);
+
+    @PostMapping(value = Constants.PAYMENT_URI)
+    PaymentDTO payment(@RequestHeader("Accept-Language") String acceptLanguage,
+                       @RequestBody PaymentRQ paymentRq);
+```
