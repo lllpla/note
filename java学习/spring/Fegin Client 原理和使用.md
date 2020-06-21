@@ -47,3 +47,131 @@ feign:
 ## 四、Http Client 配置
 
 - okhttp 配置源码
+
+```java
+@Configuration(proxyBeanMethods = false)
+@ConditionalOnMissingBean(okhttp3.OkHttpClient.class)
+public class OkHttpFeignConfiguration {
+
+ private okhttp3.OkHttpClient okHttpClient;
+  
+ @Bean
+ @ConditionalOnMissingBean(ConnectionPool.class)
+ public ConnectionPool httpClientConnectionPool(
+   FeignHttpClientProperties httpClientProperties,
+   OkHttpClientConnectionPoolFactory connectionPoolFactory) {
+  Integer maxTotalConnections = httpClientProperties.getMaxConnections();
+  Long timeToLive = httpClientProperties.getTimeToLive();
+  TimeUnit ttlUnit = httpClientProperties.getTimeToLiveUnit();
+  return connectionPoolFactory.create(maxTotalConnections, timeToLive, ttlUnit);
+ }
+
+ @Bean
+ public okhttp3.OkHttpClient client(OkHttpClientFactory httpClientFactory,
+   ConnectionPool connectionPool,
+   FeignHttpClientProperties httpClientProperties) {
+  Boolean followRedirects = httpClientProperties.isFollowRedirects();
+  Integer connectTimeout = httpClientProperties.getConnectionTimeout();
+  this.okHttpClient = httpClientFactory
+    .createBuilder(httpClientProperties.isDisableSslValidation())
+    .connectTimeout(connectTimeout, TimeUnit.MILLISECONDS)
+    .followRedirects(followRedirects).connectionPool(connectionPool).build();
+  return this.okHttpClient;
+ }
+
+ @PreDestroy
+ public void destroy() {
+  if (this.okHttpClient != null) {
+   this.okHttpClient.dispatcher().executorService().shutdown();
+   this.okHttpClient.connectionPool().evictAll();
+  }
+ }
+}
+```
+
+* HttpClient 配置源码
+
+```java
+@Configuration(proxyBeanMethods = false)
+@ConditionalOnMissingBean(CloseableHttpClient.class)
+public class HttpClientFeignConfiguration {
+
+ private final Timer connectionManagerTimer = new Timer(
+   "FeignApacheHttpClientConfiguration.connectionManagerTimer", true);
+
+ private CloseableHttpClient httpClient;
+
+ @Autowired(required = false)
+ private RegistryBuilder registryBuilder;
+
+ @Bean
+ @ConditionalOnMissingBean(HttpClientConnectionManager.class)
+ public HttpClientConnectionManager connectionManager(
+   ApacheHttpClientConnectionManagerFactory connectionManagerFactory,
+   FeignHttpClientProperties httpClientProperties) {
+  final HttpClientConnectionManager connectionManager = connectionManagerFactory
+    .newConnectionManager(httpClientProperties.isDisableSslValidation(),
+      httpClientProperties.getMaxConnections(),
+      httpClientProperties.getMaxConnectionsPerRoute(),
+      httpClientProperties.getTimeToLive(),
+      httpClientProperties.getTimeToLiveUnit(), this.registryBuilder);
+  this.connectionManagerTimer.schedule(new TimerTask() {
+   @Override
+   public void run() {
+    connectionManager.closeExpiredConnections();
+   }
+  }, 30000, httpClientProperties.getConnectionTimerRepeat());
+  return connectionManager;
+ }
+
+ @Bean
+ @ConditionalOnProperty(value = "feign.compression.response.enabled",
+   havingValue = "true")
+ public CloseableHttpClient customHttpClient(
+   HttpClientConnectionManager httpClientConnectionManager,
+   FeignHttpClientProperties httpClientProperties) {
+  HttpClientBuilder builder = HttpClientBuilder.create().disableCookieManagement()
+    .useSystemProperties();
+  this.httpClient = createClient(builder, httpClientConnectionManager,
+    httpClientProperties);
+  return this.httpClient;
+ }
+
+ @Bean
+ @ConditionalOnProperty(value = "feign.compression.response.enabled",
+   havingValue = "false", matchIfMissing = true)
+ public CloseableHttpClient httpClient(ApacheHttpClientFactory httpClientFactory,
+   HttpClientConnectionManager httpClientConnectionManager,
+   FeignHttpClientProperties httpClientProperties) {
+  this.httpClient = createClient(httpClientFactory.createBuilder(),
+    httpClientConnectionManager, httpClientProperties);
+  return this.httpClient;
+ }
+
+ private CloseableHttpClient createClient(HttpClientBuilder builder,
+   HttpClientConnectionManager httpClientConnectionManager,
+   FeignHttpClientProperties httpClientProperties) {
+  RequestConfig defaultRequestConfig = RequestConfig.custom()
+    .setConnectTimeout(httpClientProperties.getConnectionTimeout())
+    .setRedirectsEnabled(httpClientProperties.isFollowRedirects()).build();
+  CloseableHttpClient httpClient = builder
+    .setDefaultRequestConfig(defaultRequestConfig)
+    .setConnectionManager(httpClientConnectionManager).build();
+  return httpClient;
+ }
+
+ @PreDestroy
+ public void destroy() throws Exception {
+  this.connectionManagerTimer.cancel();
+  if (this.httpClient != null) {
+   this.httpClient.close();
+  }
+ }
+}
+```
+
+- HttpClient 配置属性
+
+```java
+
+```
