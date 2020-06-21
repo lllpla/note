@@ -437,3 +437,22 @@ public class FeignFormConfiguration {
 }
 ```
 
+* 拦截器-自动添加`header` 或者 `token` 等
+
+```java
+@Configuration
+public class FeignInterceptor implements RequestInterceptor {
+
+    @Override
+    public void apply(RequestTemplate requestTemplate) {
+        requestTemplate.header(Constants.TOKEN_STR, "Bearer xxx");
+    }
+}
+```
+
+* ErrorCode-可以自定义错误响应码的处理
+
+```java
+
+```
+
