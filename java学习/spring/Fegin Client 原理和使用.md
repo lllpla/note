@@ -325,3 +325,63 @@ public @interface FeignClient {
  boolean primary() default true;
 }
 ```
+
+## 六、Feign Client 配置
+
+- FeignClient 配置源码
+
+```java
+/**
+  * Feign client configuration.
+  */
+ public static class FeignClientConfiguration {
+
+  private Logger.Level loggerLevel;
+
+  private Integer connectTimeout;
+
+  private Integer readTimeout;
+
+  private Class<Retryer> retryer;
+
+  private Class<ErrorDecoder> errorDecoder;
+
+  private List<Class<RequestInterceptor>> requestInterceptors;
+
+  private Boolean decode404;
+
+  private Class<Decoder> decoder;
+
+  private Class<Encoder> encoder;
+
+  private Class<Contract> contract;
+
+  private ExceptionPropagationPolicy exceptionPropagationPolicy;
+
+    //省略setter 和 getter
+ }
+```
+
+## 七、Spring boot 服务下使用示例
+
+- pom.xml 中引入依赖，部分特性需要额外的依赖扩展(诸如表单提交等)
+
+```xml
+<dependencies>
+  <!-- spring-cloud-starter-openfeign 支持负载均衡、重试、断路器等 -->
+  <dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-openfeign</artifactId>
+    <version>2.2.2.RELEASE</version>
+  </dependency>
+  <!-- Required to use PATCH. feign-okhttp not support PATCH Method -->
+  <dependency>
+    <groupId>io.github.openfeign</groupId>
+    <artifactId>feign-httpclient</artifactId>
+    <version>11.0</version>
+  </dependency>
+</dependencies>
+
+```
+
+* 开启支持-使用 `EnableFeignClients` 注解
