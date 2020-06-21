@@ -509,5 +509,29 @@ public class TyaleErrorException extends Exception {
 * FeignClient 使用示例
 
 ```java
+@RestController
+@RequestMapping(value = "/rest/tyale")
+public class TyaleController {
 
+    @Autowired
+    private TyaleFeignClient feignClient;
+
+    @GetMapping(value="/stations")
+    public BaseResponseDTO<StationPage> stations() {
+        try {
+            String acceptLanguage = "en";
+            String country = "DE";
+            String order = "NAME";
+            Integer page = 0;
+            Integer pageSize = 20;
+            StationPage stationPage = feignClient.stations(acceptLanguage,
+                    country, order, page, pageSize);
+            return ResponseBuilder.buildSuccessRS(stationPage);
+        } catch (TyaleErrorException tyaleError) {
+            System.out.println(tyaleError);
+            //todo 处理异常返回时的响应
+        }
+        return ResponseBuilder.buildSuccessRS();
+    }
+}
 ```
