@@ -34,4 +34,5 @@
 1. [InnoDB学习笔记](https://github.com/lllpla/note/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/InnoDB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md)
 2. [MySQL索引背后的数据结构及算法原理](https://github.com/lllpla/note/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E7%B4%A2%E5%BC%95%E8%83%8C%E5%90%8E%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86.md)
 3. [mybatis的oracle自增主键配置](https://github.com/lllpla/note/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/mybatis%E7%9A%84oracle%E8%87%AA%E5%A2%9E%E4%B8%BB%E9%94%AE%E9%85%8D%E7%BD%AE.md)
-4. [简单ORACLE分区表、分区索引.md](https://github.com/lllpla/note/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/%E7%AE%80%E5%8D%95ORACLE%E5%88%86%E5%8C%BA%E8%A1%A8%E3%80%81%E5%88%86%E5%8C%BA%E7%B4%A2%E5%BC%95.md)
+4. [简单ORACLE分区表、分区索引](https://github.com/lllpla/note/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/%E7%AE%80%E5%8D%95ORACLE%E5%88%86%E5%8C%BA%E8%A1%A8%E3%80%81%E5%88%86%E5%8C%BA%E7%B4%A2%E5%BC%95.md)
+5.[MySQL 5.7之中文全文检索](https://github.com/lllpla/note/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%205.7%E4%B9%8B%E4%B8%AD%E6%96%87%E5%85%A8%E6%96%87%E6%A3%80%E7%B4%A2.md)
