@@ -1,0 +1,98 @@
+{
+  "main": {
+    "id": "c80cade2fa149a63",
+    "type": "split",
+    "children": [
+      {
+        "id": "6fd601bf9d324889",
+        "type": "leaf",
+        "active": true,
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "java学习/虚拟机/多线程中的volatile和伪共享 .md",
+            "mode": "preview"
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "459dbcd7fc262260",
+    "type": "split",
+    "children": [
+      {
+        "id": "adf268e3f909fcab",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9d77c3d575198f56",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "f802fcc81d3fdc4b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:#HashMap"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "f989c905361d80e3",
+    "type": "split",
+    "children": [
+      {
+        "id": "efb42e28f6dff4a1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d85f844cfcc1be76",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {}
+            }
+          },
+          {
+            "id": "3c7bd42994783d61",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "java学习/虚拟机/多线程中的volatile和伪共享 .md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "lastOpenFiles": [
+    "java学习/虚拟机/多线程中的volatile和伪共享 .md",
+    "java学习/虚拟机/缓存更新.md",
+    "多线程中的volatile和伪共享.md",
+    "java学习/多线程学习.md",
+    "java学习/spring/Fegin Client 原理和使用.md",
+    "java学习/spring/彻底透析SpringBoot jar可执行原理.md",
+    "README.md",
+    "接口整理.md",
+    "202009160914.md",
+    "java学习/Optional学习.md"
+  ]
+}

@@ -1,6 +1,7 @@
 
 
 # 使用Optional摆脱NullPointerException的折磨  
+[[Lambda]]
 
 在目前的工作中，我对Java中的Stream和Lambda表达式都使用得很多，之前也写了两篇文章来总结对应的知识。 
 
