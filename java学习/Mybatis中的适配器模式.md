@@ -50,5 +50,9 @@ public interface List<E> extends Collection<E>{
 }
 ```
 
-3.适配器
+## 3.适配器
+
+```java
+pul
+```
 
