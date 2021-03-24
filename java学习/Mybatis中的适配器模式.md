@@ -26,4 +26,29 @@
 
 #一个例子
 
-比如早期的时候V1版本的订单接口的入参都为Map类型，随着业务的更新和迭代，在V2版本的时候该订单接口支持传入List类型。在不改变接口代码的情况下，如何支持List<>
+比如早期的时候V1版本的订单接口的入参都为Map类型，随着业务的更新和迭代，在V2版本的时候该订单接口支持传入List类型。在不改变接口代码的情况下，如何支持List类型。
+
+## 1.源
+
+```java
+public void froOrderMap(Map map){
+    for(int i=0; i<map.size(); i++){
+        String value = (String) map.get(i);
+        System.out.println("value:"+value);
+    }
+}
+```
+
+## 2.目标
+
+```java
+public interface List<E> extends Collection<E>{
+    ……
+    int size();
+    E get(int index);
+    E set(int index; E element);
+}
+```
+
+3.适配器
+
