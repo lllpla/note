@@ -1,172 +1,175 @@
-<mxfile host="app.diagrams.net" modified="2021-09-06T10:07:57.340Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36 Edg/93.0.961.38" etag="wXyhZ75qIxcWd1XnihJ_" version="15.0.3" type="github">
+<mxfile host="app.diagrams.net" modified="2021-09-07T08:45:10.407Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36 Edg/93.0.961.38" etag="f5FBlMsezAl6cUXscUR0" version="15.0.6" type="github">
   <diagram id="t5DogTsfAzQi-8NUs7v6" name="第 1 页">
-    <mxGraphModel dx="2193" dy="956" grid="0" gridSize="10" guides="0" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1817" dy="611" grid="0" gridSize="10" guides="0" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="Geky7P4-buPN4fWQkqxe-3" value="展示层" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#0e8088;fillColor=#b0e3e6;" vertex="1" parent="1">
+        <mxCell id="Geky7P4-buPN4fWQkqxe-3" value="展示层" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#0e8088;fillColor=#b0e3e6;" parent="1" vertex="1">
           <mxGeometry x="70" y="220" width="100" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-6" value="业务功能" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#0e8088;fillColor=#b0e3e6;" vertex="1" parent="1">
-          <mxGeometry x="70" y="350" width="100" height="250" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-6" value="业务功能" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#0e8088;fillColor=#b0e3e6;" parent="1" vertex="1">
+          <mxGeometry x="70" y="350" width="101" height="284" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-10" value="基础功能" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#0e8088;fillColor=#b0e3e6;" vertex="1" parent="1">
-          <mxGeometry x="70" y="610" width="100" height="350" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-10" value="基础功能" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#0e8088;fillColor=#b0e3e6;" parent="1" vertex="1">
+          <mxGeometry x="72" y="639" width="98" height="350" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-38" value="" style="group" vertex="1" connectable="0" parent="1">
-          <mxGeometry x="320" y="220" width="200" height="740" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-38" value="" style="group" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="320" y="220" width="202" height="740" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-13" value="流程设计" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=#23445d;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-38">
-          <mxGeometry y="390" width="200" height="30" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-13" value="流程设计" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=#23445d;" parent="Geky7P4-buPN4fWQkqxe-38" vertex="1">
+          <mxGeometry x="2" y="419" width="198" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-14" value="流程部署、启动、监听" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=#23445d;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-38">
-          <mxGeometry y="430" width="200" height="30" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-14" value="流程部署、启动、监听" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=#23445d;" parent="Geky7P4-buPN4fWQkqxe-38" vertex="1">
+          <mxGeometry x="2" y="459" width="198" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-15" value="任务分派、签收、处理" style="whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=#23445d;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-38">
-          <mxGeometry y="470" width="200" height="30" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-15" value="任务分派、签收、处理" style="whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=#23445d;" parent="Geky7P4-buPN4fWQkqxe-38" vertex="1">
+          <mxGeometry x="2" y="499" width="198" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-17" value="定时任务配置" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=#23445d;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-38">
-          <mxGeometry y="510" width="200" height="30" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-17" value="定时任务配置" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=#23445d;" parent="Geky7P4-buPN4fWQkqxe-38" vertex="1">
+          <mxGeometry x="2" y="539" width="198" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-19" value="令牌桶限流" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=#23445d;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-38">
-          <mxGeometry y="550" width="200" height="30" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-19" value="令牌桶限流" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=#23445d;" parent="Geky7P4-buPN4fWQkqxe-38" vertex="1">
+          <mxGeometry x="2" y="579" width="198" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-20" value="接口日志" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=#23445d;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-38">
-          <mxGeometry y="590" width="200" height="30" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-20" value="接口日志" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=#23445d;" parent="Geky7P4-buPN4fWQkqxe-38" vertex="1">
+          <mxGeometry x="2" y="619" width="198" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-21" value="组织、人员数据同步" style="whiteSpace=wrap;html=1;strokeColor=#10739e;fillColor=#b1ddf0;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-38">
+        <mxCell id="Geky7P4-buPN4fWQkqxe-21" value="组织、人员数据同步" style="whiteSpace=wrap;html=1;strokeColor=#10739e;fillColor=#b1ddf0;" parent="Geky7P4-buPN4fWQkqxe-38" vertex="1">
           <mxGeometry y="130" width="200" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-22" value="角色和菜单分配" style="whiteSpace=wrap;html=1;strokeColor=#10739e;fillColor=#b1ddf0;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-38">
+        <mxCell id="Geky7P4-buPN4fWQkqxe-22" value="角色和菜单分配" style="whiteSpace=wrap;html=1;strokeColor=#10739e;fillColor=#b1ddf0;" parent="Geky7P4-buPN4fWQkqxe-38" vertex="1">
           <mxGeometry y="170" width="200" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-23" value="物资编码申请、审批、批量导入" style="whiteSpace=wrap;html=1;strokeColor=#10739e;fillColor=#b1ddf0;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-38">
-          <mxGeometry y="215" width="200" height="55" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-23" value="物资编码申请、审批、批量导入" style="whiteSpace=wrap;html=1;strokeColor=#10739e;fillColor=#b1ddf0;" parent="Geky7P4-buPN4fWQkqxe-38" vertex="1">
+          <mxGeometry y="209" width="199" height="29" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-26" value="需求清单管理" style="whiteSpace=wrap;html=1;strokeColor=#10739e;fillColor=#b1ddf0;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-38">
-          <mxGeometry y="280" width="200" height="30" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-26" value="需求清单管理" style="whiteSpace=wrap;html=1;strokeColor=#10739e;fillColor=#b1ddf0;" parent="Geky7P4-buPN4fWQkqxe-38" vertex="1">
+          <mxGeometry x="-1" y="251" width="200" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-27" value="需求计划合并" style="whiteSpace=wrap;html=1;strokeColor=#10739e;fillColor=#b1ddf0;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-38">
-          <mxGeometry y="350" width="200" height="30" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-27" value="货位、批次、库存管理" style="whiteSpace=wrap;html=1;strokeColor=#10739e;fillColor=#b1ddf0;" parent="Geky7P4-buPN4fWQkqxe-38" vertex="1">
+          <mxGeometry y="350" width="200" height="28" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-28" value="需求计划提报、审批" style="whiteSpace=wrap;html=1;strokeColor=#10739e;fillColor=#b1ddf0;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-38">
+        <mxCell id="Geky7P4-buPN4fWQkqxe-28" value="采购计划、送货单管理" style="whiteSpace=wrap;html=1;strokeColor=#10739e;fillColor=#b1ddf0;" parent="Geky7P4-buPN4fWQkqxe-38" vertex="1">
           <mxGeometry y="315" width="200" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-29" value="新增、修改、删除菜单" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d0cee2;strokeColor=#56517e;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-38">
+        <mxCell id="Geky7P4-buPN4fWQkqxe-29" value="新增、修改、删除菜单" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d0cee2;strokeColor=#56517e;" parent="Geky7P4-buPN4fWQkqxe-38" vertex="1">
           <mxGeometry width="200" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-30" value="对接帆软报表" style="whiteSpace=wrap;html=1;fillColor=#d0cee2;strokeColor=#56517e;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-38">
+        <mxCell id="Geky7P4-buPN4fWQkqxe-30" value="对接帆软报表" style="whiteSpace=wrap;html=1;fillColor=#d0cee2;strokeColor=#56517e;" parent="Geky7P4-buPN4fWQkqxe-38" vertex="1">
           <mxGeometry y="40" width="200" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-32" value="表格样式可自定义配置" style="whiteSpace=wrap;html=1;fillColor=#d0cee2;strokeColor=#56517e;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-38">
+        <mxCell id="Geky7P4-buPN4fWQkqxe-32" value="表格样式可自定义配置" style="whiteSpace=wrap;html=1;fillColor=#d0cee2;strokeColor=#56517e;" parent="Geky7P4-buPN4fWQkqxe-38" vertex="1">
           <mxGeometry y="80" width="200" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-34" value="字典数据" style="whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=#23445d;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-38">
-          <mxGeometry y="630" width="200" height="30" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-34" value="字典数据" style="whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=#23445d;" parent="Geky7P4-buPN4fWQkqxe-38" vertex="1">
+          <mxGeometry x="2" y="659" width="198" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-35" value="分布式锁" style="whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=#23445d;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-38">
-          <mxGeometry y="670" width="200" height="30" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-35" value="分布式锁" style="whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=#23445d;" parent="Geky7P4-buPN4fWQkqxe-38" vertex="1">
+          <mxGeometry x="2" y="699" width="198" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-37" value="消息消费和发布" style="whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=#23445d;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-38">
-          <mxGeometry y="710" width="200" height="30" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-37" value="消息消费和发布" style="whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=#23445d;" parent="Geky7P4-buPN4fWQkqxe-38" vertex="1">
+          <mxGeometry x="2" y="739" width="198" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-1" value="菜单管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" vertex="1" parent="1">
+        <mxCell id="u0FpwHIVkgrJ-tL2beOv-20" value="&lt;span&gt;仓库事务&lt;/span&gt;" style="whiteSpace=wrap;html=1;strokeColor=#10739e;fillColor=#b1ddf0;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-38">
+          <mxGeometry y="385" width="200" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="u0FpwHIVkgrJ-tL2beOv-23" value="&lt;span&gt;需求计划提报、审批、合并&lt;/span&gt;" style="whiteSpace=wrap;html=1;strokeColor=#10739e;fillColor=#b1ddf0;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-38">
+          <mxGeometry y="286" width="200" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="Geky7P4-buPN4fWQkqxe-1" value="菜单管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" parent="1" vertex="1">
           <mxGeometry x="180" y="220" width="130" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-2" value="嵌入报表" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" vertex="1" parent="1">
+        <mxCell id="Geky7P4-buPN4fWQkqxe-2" value="嵌入报表" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" parent="1" vertex="1">
           <mxGeometry x="180" y="260" width="130" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-7" value="组织权限管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" vertex="1" parent="1">
+        <mxCell id="Geky7P4-buPN4fWQkqxe-7" value="组织权限管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" parent="1" vertex="1">
           <mxGeometry x="180" y="350" width="130" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-8" value="物资编码管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="180" y="435" width="130" height="55" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-11" value="流程管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="182" y="639" width="128" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-11" value="流程管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="180" y="610" width="130" height="110" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-12" value="接口监控" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="182" y="799" width="128" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-12" value="接口监控" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="180" y="770" width="130" height="70" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-16" value="定时任务" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="182" y="759" width="128" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-16" value="定时任务" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="180" y="730" width="130" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-25" value="需求管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="180" y="500" width="130" height="100" as="geometry" />
-        </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-31" value="表格配置" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" vertex="1" parent="1">
+        <mxCell id="Geky7P4-buPN4fWQkqxe-31" value="表格配置" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" parent="1" vertex="1">
           <mxGeometry x="180" y="300" width="130" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-33" value="系统缓存" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="180" y="850" width="130" height="70" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-33" value="系统缓存" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="182" y="879" width="128" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-36" value="消息队列" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="180" y="930" width="130" height="30" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-36" value="消息队列" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="182" y="959" width="128" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-40" value="" style="group;rounded=0;" vertex="1" connectable="0" parent="1">
+        <mxCell id="Geky7P4-buPN4fWQkqxe-40" value="" style="group;rounded=0;" parent="1" vertex="1" connectable="0">
           <mxGeometry x="180" y="220" width="130" height="740" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-41" value="菜单管理" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#BD7000;fontColor=#000000;fillColor=#849DF0;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-40">
+        <mxCell id="Geky7P4-buPN4fWQkqxe-41" value="菜单管理" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#BD7000;fontColor=#000000;fillColor=#849DF0;" parent="Geky7P4-buPN4fWQkqxe-40" vertex="1">
           <mxGeometry width="130" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-42" value="嵌入报表" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#BD7000;fontColor=#000000;fillColor=#849DF0;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-40">
+        <mxCell id="Geky7P4-buPN4fWQkqxe-42" value="嵌入报表" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#BD7000;fontColor=#000000;fillColor=#849DF0;" parent="Geky7P4-buPN4fWQkqxe-40" vertex="1">
           <mxGeometry y="40" width="130" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-43" value="组织权限管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-40">
+        <mxCell id="Geky7P4-buPN4fWQkqxe-43" value="组织权限管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" parent="Geky7P4-buPN4fWQkqxe-40" vertex="1">
           <mxGeometry y="130" width="130" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-44" value="物资编码管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-40">
-          <mxGeometry y="215" width="130" height="55" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-44" value="物资编码管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" parent="Geky7P4-buPN4fWQkqxe-40" vertex="1">
+          <mxGeometry x="1" y="209" width="129" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-45" value="流程管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-40">
-          <mxGeometry y="390" width="130" height="110" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-45" value="流程管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" parent="Geky7P4-buPN4fWQkqxe-40" vertex="1">
+          <mxGeometry x="2" y="419" width="128" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-46" value="接口监控" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-40">
-          <mxGeometry y="550" width="130" height="70" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-46" value="接口监控" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" parent="Geky7P4-buPN4fWQkqxe-40" vertex="1">
+          <mxGeometry x="2" y="579" width="128" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-47" value="定时任务" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-40">
-          <mxGeometry y="510" width="130" height="30" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-47" value="定时任务" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" parent="Geky7P4-buPN4fWQkqxe-40" vertex="1">
+          <mxGeometry x="2" y="539" width="128" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-48" value="需求管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-40">
-          <mxGeometry y="280" width="130" height="100" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-48" value="需求管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" parent="Geky7P4-buPN4fWQkqxe-40" vertex="1">
+          <mxGeometry x="-1" y="249" width="130" height="95" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-49" value="表格配置" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#BD7000;fontColor=#000000;fillColor=#849DF0;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-40">
+        <mxCell id="Geky7P4-buPN4fWQkqxe-49" value="表格配置" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#BD7000;fontColor=#000000;fillColor=#849DF0;" parent="Geky7P4-buPN4fWQkqxe-40" vertex="1">
           <mxGeometry y="80" width="130" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-50" value="系统缓存" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-40">
-          <mxGeometry y="630" width="130" height="70" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-50" value="系统缓存" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;" parent="Geky7P4-buPN4fWQkqxe-40" vertex="1">
+          <mxGeometry x="2" y="659" width="128" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-51" value="消息队列" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-40">
-          <mxGeometry y="710" width="130" height="30" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-51" value="消息队列" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" parent="Geky7P4-buPN4fWQkqxe-40" vertex="1">
+          <mxGeometry x="2" y="739" width="128" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-52" value="消息队列" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-40">
-          <mxGeometry y="710" width="130" height="30" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-52" value="消息队列" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;" parent="Geky7P4-buPN4fWQkqxe-40" vertex="1">
+          <mxGeometry x="2" y="739" width="128" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-53" value="流程管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-40">
-          <mxGeometry y="390" width="130" height="110" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-53" value="流程管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;" parent="Geky7P4-buPN4fWQkqxe-40" vertex="1">
+          <mxGeometry x="2" y="419" width="128" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-54" value="定时任务" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-40">
-          <mxGeometry y="510" width="130" height="30" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-54" value="定时任务" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;" parent="Geky7P4-buPN4fWQkqxe-40" vertex="1">
+          <mxGeometry x="2" y="539" width="128" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-55" value="接口监控" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;" vertex="1" parent="Geky7P4-buPN4fWQkqxe-40">
-          <mxGeometry y="550" width="130" height="70" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-55" value="接口监控" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;" parent="Geky7P4-buPN4fWQkqxe-40" vertex="1">
+          <mxGeometry x="2" y="579" width="128" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-56" value="统&lt;br&gt;一&lt;br&gt;账&lt;br&gt;号&lt;br&gt;系&lt;br&gt;统" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fad9d5;strokeColor=#ae4132;labelBorderColor=none;fontStyle=1" vertex="1" parent="1">
-          <mxGeometry x="-40" y="220" width="40" height="740" as="geometry" />
+        <mxCell id="Geky7P4-buPN4fWQkqxe-25" value="仓库管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" parent="Geky7P4-buPN4fWQkqxe-40" vertex="1">
+          <mxGeometry x="1" y="350" width="128" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-57" value="" style="shape=flexArrow;endArrow=classic;html=1;" edge="1" parent="1">
+        <mxCell id="Geky7P4-buPN4fWQkqxe-56" value="统&lt;br&gt;一&lt;br&gt;账&lt;br&gt;号&lt;br&gt;系&lt;br&gt;统" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fad9d5;strokeColor=#ae4132;labelBorderColor=none;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="-40" y="220" width="42" height="768" as="geometry" />
+        </mxCell>
+        <mxCell id="Geky7P4-buPN4fWQkqxe-57" value="" style="shape=flexArrow;endArrow=classic;html=1;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="10" y="274" as="sourcePoint" />
             <mxPoint x="60" y="274.29" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-59" value="" style="shape=flexArrow;endArrow=classic;html=1;" edge="1" parent="1">
+        <mxCell id="Geky7P4-buPN4fWQkqxe-59" value="" style="shape=flexArrow;endArrow=classic;html=1;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="10" y="784" as="sourcePoint" />
             <mxPoint x="60" y="784.29" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="Geky7P4-buPN4fWQkqxe-62" value="" style="shape=flexArrow;endArrow=classic;html=1;" edge="1" parent="1">
+        <mxCell id="Geky7P4-buPN4fWQkqxe-62" value="" style="shape=flexArrow;endArrow=classic;html=1;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="10" y="480" as="sourcePoint" />
             <mxPoint x="60" y="480" as="targetPoint" />
